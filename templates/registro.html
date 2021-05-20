@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<main class="pupi-bg-naval full pupi-cont-center">
+    <div class="bg-white  rounded  m-3">
+
+        <!--msj de error-->
+        {% with messages = get_flashed_messages() %}
+            {% if messages  %}
+            <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                <strong>Oh no! </strong> 
+                {% for message in messages  %}
+                    {{message}}
+                {% endfor %}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        {% endwith %}
+
+
+        <div class="row p-5 m-0">
+            <div class="col pupi-bord ">
+                <h1 class="text-center ">Registrate</h1>
+
+                <form action="/usuarios/registro" method="POST" class="">
+
+                    <div class="form-group ">
+                        <label>Nombre de tu negocio</label>
+                        <input id="test-usuario" name="nombre" placeholder="El rancho del abuelo" type="text" class="form-control">
+                        <span id="text-info" style="color: lightslategray;font-size: 12px;">El nombre de tu negocio es unico</span>
+                    </div>
+
+                    <div class="form-group ">
+                        <label>Domicilio</label>
+                        <input name="domicilio" placeholder="Marcos Gordoa #132" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group ">
+                        <label>Telefono</label>
+                        <input name="telefono" placeholder="3414129550" type="number" class="form-control">
+                    </div>
+
+                    <div class="form-group ">
+                        <label>Correo Electronico</label>
+                        <input name="email" placeholder="maria@gmail.com" type="email" class="form-control">
+                    </div>
+
+                    <div class="form-group ">
+                        <label>Contraseña</label>
+                        <input name="password"  type="password" class="form-control" value="">
+                    </div>
+
+                    <small>Al registrarte aceptas nuestros <a href="/terminoscondiciones">términos y condiciones</a></small>
+
+                    <button id="btn-registro"  type="submit" class="btn pupi-bg-naval text-white w-100">Crear cuenta</button>
+
+                    <div class="mt-2">
+                        <small><a class="text-dark" href="/usuarios/login">Ya tengo una cuenta</a></small>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col d-none d-md-flex ">
+                <img src="{{url_for('static', filename = 'img/registro.svg')}}" width="100%">
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock contenido %}
+
+{% block scripts %}
+<script src="{{url_for('static', filename = 'js/validar.js')}}"></script>
+{% endblock scripts %}

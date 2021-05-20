@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30"
+                class="d-inline-block align-top" alt="">
+            Menu Local
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dashboard">Panel de control <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/usuarios/logout">Salir <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--modal-->
+<!--Modal window-->
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Añade una nueva fotografia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--cargador de archivos cloudinary-->
+                <div class="card p-5">
+                    <img id="img-preview" class="card-img-top">
+                    <div class="car">
+                        <input type="file" id="img-uploader">
+                    </div>
+                    <div class="progress mt-5">
+                        <div id="img-upload-bar" class="progress-bar" role="progressbar" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div id="miniatura" class="mt-3">
+                        <!--Esperando img de js-->
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="addImg('{{producto['_id']}}')" class="btn btn-primary">Enviar</button>
+
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--modal end-->
+
+<h1 class="text-white">{{ favouriteAnimal }}</h1>
+
+<main>
+    <div class="container">
+        <div class="row p-2">
+
+            <div class="bg-white pupi-border-card col-md-4 m-2 p-3">
+
+
+                <h3 class="text-center">Información del producto</h3>
+                <hr class="mb-3">
+
+                <form action="#" id="form">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+                        </div>
+                        <input id="nombre" value="{{producto['nombre']}}" name="nombre" type="text" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">categoria</span>
+                        </div>
+                        <input id="categoria" value="{{producto['categoria']}}" type="text" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input id="precio" value="{{producto['precio']}}" type="text" class="form-control"
+                            aria-label="Dollar amount (with dot and two decimal places)"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Ingredientes</span>
+                        </div>
+                        <input id="ingredientes" value="{{producto['ingredientes']}}" type="text" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <!-- este es un input que no sera visible XD es una chapusa-->
+
+                    <div class="input-group input-group-sm mb-3" style="display: none;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">id</span>
+                        </div>
+                        <input id="id" value="{{producto['_id']}}" type="text" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <button onclick="update_info('{{producto['_id']}}')" class="btn btn-dark w-100">Guardar
+                        cambios</button>
+                </form>
+            </div>
+
+            <div class=" col-md-7 ">
+
+                <div class="d-flex justify-content-around flex-wrap" id="cont-fotos-card">
+
+                    <!--Esperando desde un archivo js-->
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+</main>
+
+{% endblock contenido %}
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!--sweet arlert-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+<!--subida de imagenes-->
+<script src="{{url_for('static', filename = 'js/cloudinary.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/productos.js')}}"></script>
+
+<!--productos -->
+<script src="{{url_for('static', filename = 'js/productos.js')}}"></script>
+
+
+<script>
+
+    var id = document.getElementById('id').value
+
+    url = '/productos/test/' + id
+    axios.get(url)
+        .then(response => {
+
+            let fotos = response.data[0].fotos
+            let publicId = response.data[0].publicID
+            let product_id = response.data[0]._id
+
+            renderCards(fotos, publicId, id)
+        })
+        .catch(e => {
+            // Capturamos los errores
+            console.log(e)
+        })
+
+    function renderCards(fotos, publicId, id) {
+
+        const cont = document.querySelector('#cont-fotos-card')
+
+        cont.innerHTML = `
+        <div class="card m-2 pupi-bg-noche border-0 " style="width: 10rem;">
+                <img src="{{ url_for('static' , filename = 'img/add.png') }}" class="card-img-top" alt="...">
+                <div class="card-body p-1 ">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-dark w-100" data-toggle="modal"
+                                data-target="#staticBackdrop">nueva foto</button>
+                </div>
+        </div>
+        `
+
+        contador = 0
+        while (contador < fotos.length) {
+
+            cont.innerHTML += `
+
+                <div class="card m-2 pupi-bg-noche border-0 " style="width: 10rem;">
+                        <img src = "${fotos[contador]}" class="card-img-top" alt="...">
+                        <div class="card-body p-1 ">
+                            <button onclick="deleteImage('${id}','${fotos[contador]}','${publicId[contador]}')"
+                                type="button" class="btn btn-danger w-100">Eliminar</button>
+                        </div>
+                </div>
+            
+            `
+            contador = contador + 1
+        }
+    }
+</script>
+{% endblock scripts %}

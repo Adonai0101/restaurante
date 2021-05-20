@@ -1,0 +1,183 @@
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+.blur{
+    filter: blur(2px);
+}
+
+
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    
+}
+ 
+.texto-encima{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+}
+.centrado{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.4);
+    padding: 1em;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+
+/*productos*/
+.cont-products{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin: 20px;
+}
+
+.pupi-card{
+    border-radius: 5px;
+    background: white;
+    border: solid red 2px;
+}
+
+
+/*mis propios cards*/
+.card-img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: opacity(95%);
+}
+
+.cont-text{
+    position: relative;
+}
+
+.text-fload{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    border-radius: 0px 0px 10px 10px;
+    background-color:rgba(0,0,0,0.5);
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/*foto de perfil del dashboard*/
+
+.text-ico{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 0px 0px 10px 10px;
+    background-color: red;
+    width: 30px;
+    border-radius: 50%;
+    text-align: right;
+    font-size: 1.2em;
+    color: white;
+}
+
+.text-ico:hover{
+    background: rgb(172, 20, 20);
+}
+
+.card-img:hover{
+
+    filter: opacity(100%);
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: white;
+}
+
+.list-top{
+    border-top: solid white 1px;
+}
+
+@media only screen and (min-width: 900px) {
+    .list-top{
+        border: none;
+        margin-top: 0;
+    }
+  }
+
+
+.redes_sociales a i{
+    font-size: 2em;
+    padding: 5px;
+    margin: 20px;
+    
+}
+
+.red_btn{
+    border-radius: 100%;
+    border: solid white 1px;
+    margin: 20px;
+}
+
+.face:hover{
+    background: #4267b2;
+    border: solid #4267b2 1px;
+}
+
+.insta:hover{
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    border: solid white 1px;
+}
+
+.tik:hover{
+    background: black;
+    border: solid black 1px;
+}
+
+.ico_tel{
+    color: #0c8e42;
+}
+
+.ico_dom{
+    color: red;
+}
+
+/*Error 404*/
+.tc{
+    color: white;
+    padding: 1.5em;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.tc img{
+    width: 100%;
+}
+
+.tc a{
+    margin-top: 100px;
+    background: rgb(19, 19, 19);
+    font-size: 1.5em;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.tc a:hover{
+    background: rgb(37, 37, 37);
+}
+

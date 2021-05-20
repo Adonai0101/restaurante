@@ -1,0 +1,158 @@
+:root{
+    --naval: #144361;
+    --lince:#f5f6fa;
+    /*--cadena:#718093;*/
+    --cadena:#f4f5f7;
+    --noche:#353b48;
+    --depblue:#1d2c3f;
+    
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.pupi-bg-black{
+    background: #282828;
+}
+
+.pupi-bg-naval{
+    background-color: var(--naval);
+}
+
+.pupi-bg-depblue{
+    background-color: var(--depblue);
+}
+
+.pupi-bg-lince{
+    background-color: var(--lince);
+}
+
+.pupi-bg-cadena{
+    background-color: var(--cadena);
+}
+
+.pupi-bg-noche{
+    background-color: var(--noche);
+}
+
+.pupi-bg-cadena{
+    background-color: var(--cadena);
+}
+
+
+
+/*border*/
+.pupi-bord{
+    border-top: solid  var(--naval) 5px;
+    
+}
+
+
+.pupi-border-card{
+    border-radius: 20px;
+}
+
+/*izquierda arriba , derecha arriba, derecha abajo, derecha izq*/
+.pupi-border-card-1{
+    border-radius: 20px 0px 0px 0px;
+}
+.pupi-border-card-2{
+    border-radius: 0px 20px 0px 0px;
+}
+
+.pupi-border-card-3{
+    border-radius: 0px 0px 0px 20px;
+}
+
+.pupi-border-card-4{
+    border-radius: 0px 0px 20px 0px;
+}
+
+.pupi-border-card-l{
+    border-radius: 20px 0px 0px 20px;
+}
+.pupi-border-card-r{
+    border-radius: 0px 20px 20px 0px;
+}
+
+.border-test{
+    border: 2px solid red;
+    border-radius: 0px 0px 0px 20px; 
+}
+
+
+.cursor{
+    cursor: pointer;
+}
+
+
+
+.pupi-cont-center{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.full{
+    height: 100vh;
+}
+
+
+/*Sidebar*/
+
+.pupi-sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #151719;
+    left: -200px;
+    z-index: 9999;
+    transition: all 200ms linear;
+}
+
+.pupi-sidebar.active {
+    left: 0px;
+    
+}
+
+.pupi-sidebar ul li {
+    color: rgba(230, 230, 230, .9);
+    list-style: none;
+    padding: 15px 10px;
+    border-bottom: 1px solid rgba(100, 100, 100, .3);
+    text-align: center;
+    cursor: pointer;
+}
+
+.pupi-sidebar .toggle-btn {
+    position: absolute;
+    left: 230px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.pupi-sidebar .toggle-btn span {
+    display: block;
+    width: 40px;
+    text-align: center;
+    font-size: 30px;
+    border: 3px solid #000;
+}
+
+.logo {
+    border-radius: 50%;
+    border: solid rgba(230, 230, 230, .9);;
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+/*sobre escribiendo bootstrap*/
+
+.bg-dark{
+    color: #151719 !important;
+}

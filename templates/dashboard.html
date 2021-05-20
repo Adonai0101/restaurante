@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30"
+        class="d-inline-block align-top" alt="">
+      Menu Local
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/usuarios/logout">Salir <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!--Modal window-->
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Añade un nuevo producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!--Formulario-->
+        <form action="#" id="form">
+
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+            </div>
+            <input id="nombre" name="nombre" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">categoria</span>
+            </div>
+            <input id="categoria" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span class="input-group-text">$</span>
+            </div>
+            <input id="precio" type="text" class="form-control"
+              aria-label="Dollar amount (with dot and two decimal places)" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Ingredientes</span>
+            </div>
+            <input id="ingredientes" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <!--cargador de archivos cloudinary-->
+          <div class="card p-5">
+            <img id="img-preview" class="card-img-top">
+            <div class="car">
+              <input type="file" id="img-uploader">
+            </div>
+            <div class="progress mt-5">
+              <div id="img-upload-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                aria-valuemax="100">
+              </div>
+            </div>
+            <div id="miniatura" class="mt-3">
+              <!--Esperando img de js-->
+            </div>
+          </div>
+
+
+      </div>
+      <div class="modal-footer ">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="add" class="btn btn-primary">Enviar</button>
+
+      </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+<main class="pt-4">
+
+  <!--productos-->
+  <h1 class="text-center text-white mb-5">Categorias de productos</h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="card-columns mx-auto">
+
+        <div class="card sombra m-2 " style="width: 18rem;">
+          <div class="card-header text-center">
+            Nueva categoria
+          </div>
+          <img src="{{ url_for('static' , filename = 'img/add.png') }}" class="card-img-top" alt="...">
+          <div class="card-body p-2">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark w-100" data-toggle="modal"
+              data-target="#staticBackdrop">ADD</button>
+          </div>
+        </div>
+
+        {% for i in categorias %}
+        <div class="card border-0 sombra m-2 " style="width: 18rem;">
+          <div class="card-header text-center">
+            {{i['categoria']}}
+          </div>
+          <img src="{{ i.foto[0]}}" class="card-img-top" alt="...">
+          <div class="card-body p-2">
+            <a class="btn btn-dark w-100 m-1" href="/dashboard/{{i['categoria']}}">Ver todo</a>
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--Formulario y codigo QR-->
+  <div class="container">
+    <div class="row p-2">
+
+      <div class="bg-white pupi-border-card col-md-7 m-2 p-3">
+        <!--msj de error-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger alert-dismissible fade show " role="alert">
+          <strong>Oh no! </strong>
+          {% for message in messages %}
+          {{message}}
+          {% endfor %}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <h3 class="text-center">Mi perfil</h3>
+        <hr>
+
+        <div class="form-group">
+          <img id="foto_perfil" class="img-fluid rounded mb-4" src="{{usuario['foto']}}" alt="">
+
+          <label class="d-block">Selecciona una nueva foto de portada</label>
+          <small>Te recomendamos una foto horizontal de buena calidad</small>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input id="user_file" type="file" class="custom-file-input" id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div id="file_bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuenow="10"
+              aria-valuemin="0" aria-valuemax="100">
+              hola
+            </div>
+          </div>
+
+        </div>
+        <hr>
+
+        <form action="/usuarios/update" method="POST">
+          <!--usamos este input para guardar el id XD se cuachalote es mi pacion -->
+          <input id="user_id" value="{{usuario['_id']}}" style="display: none;">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre del negocio</label>
+            <input id="test-usuario" type="text" class="form-control" name="usuario" value="{{usuario['nombre']}}">
+            <span id="text-info" style="color: lightslategray;font-size: 12px;">Recuerda que el nombre de
+              usuario es
+              el mismo que el de
+              tu negocio</span>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Telefono</label>
+            <input type="text" class="form-control" name="telefono" value="{{usuario['telefono']}}">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Domicilio</label>
+            <input type="text" class="form-control" name="domicilio" value="{{usuario['domicilio']}}">
+          </div>
+
+          <h5 class="txt-center">Redes sociales</h5>
+          <small>registra el link de tus redes sociales para un mejor funcionamiento</small>
+          <hr>
+          <div class="inline-box">
+
+            <div class="form-group m-2">
+              <label for="exampleInputEmail1">facebook</label>
+              <input type="text" class="form-control" name="facebook" value="{{usuario['facebook']}}">
+            </div>
+
+            <div class="form-group m-2">
+              <label for="exampleInputEmail1">Instagram</label>
+              <input type="text" class="form-control" name="instagram" value="{{usuario['instagram']}}">
+            </div>
+
+            <div class="form-group m-2">
+              <label for="exampleInputEmail1">TikTok</label>
+              <input type="text" class="form-control" name="tiktok" value="{{usuario['tiktok']}}">
+            </div>
+          </div>
+
+
+          <a id="ver_menu" class="text-dark" href="">ver mi menu digital</a>
+          <input id="btn-registro" type="submit" class="btn btn-dark w-100" value="Agregar Nuevos Datos">
+
+        </form>
+      </div>
+
+      <div class="bg-white pupi-border-card col-md-4 m-2 bg-warning">
+
+        <h3 class="text-center">mi codigo QR</h3>
+        <hr>
+        <div class="mx-auto" id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
+
+        <p id="menu_url"> poner aqui el url del menu</p>
+
+        <button id="btn_qr" class="btn btn-dark mt-3 w-100">imprimir codigo QR</button>
+
+        <small>Recuerda imprimir de nuevo tu codigo qr si cambias el nombre de tu negocio</small>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script></script>
+{% endblock contenido %}
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!--sweet arlert-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+<!--subida de imagenes-->
+<script src="{{url_for('static', filename = 'js/cloudinary.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/productos.js')}}"></script>
+
+<!--validador..XD -->
+<script src="{{url_for('static', filename = 'js/validar.js')}}"></script>
+
+<!--codigo qr-->
+<script src="{{url_for('static', filename = 'js/qrcode.min.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/qr.js')}}"></script>
+{% endblock scripts %}
