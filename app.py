@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,redirect
 
 #variables de entorno
 from decouple import config
@@ -27,7 +27,7 @@ app.register_blueprint(menu,url_prefix = '/menu')
 
 @app.route('/')
 def hello():
-    return 'Hello World!'
+    return redirect('/menu')
 
 @app.route('/terminoscondiciones')
 def terminos():
