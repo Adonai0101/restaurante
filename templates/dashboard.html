@@ -108,160 +108,157 @@
 <main class="pt-4">
 
   <!--productos-->
-  <h1 class="text-center text-white mb-5">Categorias de productos</h1>
+  <h1 class="text-center text-white mb-5">Categorias de productos </h1>
+  <hr class="hr-dash m-4">
 
-  <div class="container">
-    <div class="row">
-      <div class="card-columns mx-auto">
+  <div class="m-4">
+    <div class="contenido p-4 bg-white pupi-border-card">
 
-        <div class="card sombra m-2 " style="width: 18rem;">
-          <div class="card-header text-center">
-            Nueva categoria
-          </div>
-          <img src="{{ url_for('static' , filename = 'img/add.png') }}" class="card-img-top" alt="...">
-          <div class="card-body p-2">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark w-100" data-toggle="modal"
-              data-target="#staticBackdrop">ADD</button>
+      <div class="protexion">
+        <div class="pupi-card" data-toggle="modal" data-target="#staticBackdrop">
+          <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+          <div class="title-card">
+            <p class="text-white">Nueva categoria</p>
           </div>
         </div>
-
-        {% for i in categorias %}
-        <div class="card border-0 sombra m-2 " style="width: 18rem;">
-          <div class="card-header text-center">
-            {{i['categoria']}}
-          </div>
-          <img src="{{ i.foto[0]}}" class="card-img-top" alt="...">
-          <div class="card-body p-2">
-            <a class="btn btn-dark w-100 m-1" href="/dashboard/{{i['categoria']}}">Ver todo</a>
-            </button>
-          </div>
-        </div>
-        {% endfor %}
-
       </div>
+
+
+      {% for i in categorias %}
+
+      <div class="protexion">
+        <a href="/dashboard/{{i['categoria']}}">
+          <div class="pupi-card">
+            <img class="card-img" src="{{ i.foto[0]}}" alt="">
+            <div class="title-card">
+              <p class="text-white">{{i['categoria']}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+
+      {% endfor %}
+
+
     </div>
   </div>
 
-
   <!--Formulario y codigo QR-->
-  <div class="container">
-    <div class="row p-2">
+  <div class="cont-info-dash">
 
-      <div class="bg-white pupi-border-card col-md-7 m-2 p-3">
-        <!--msj de error-->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="alert alert-danger alert-dismissible fade show " role="alert">
-          <strong>Oh no! </strong>
-          {% for message in messages %}
-          {{message}}
-          {% endfor %}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="bg-white pupi-border-card p-4 ">
+      <!--msj de error-->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="alert alert-danger alert-dismissible fade show " role="alert">
+        <strong>Oh no! </strong>
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+      {% endwith %}
+
+      <h3 class="text-center">Mi perfil</h3>
+      <hr>
+
+      <div class="form-group">
+        <img id="foto_perfil" class="portada " src="{{usuario['foto']}}" alt="">
+
+        <label class="d-block">Selecciona una nueva foto de portada</label>
+        <small>Te recomendamos una foto horizontal de buena calidad</small>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+          </div>
+          <div class="custom-file">
+            <input id="user_file" type="file" class="custom-file-input" id="inputGroupFile01"
+              aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
         </div>
-        {% endif %}
-        {% endwith %}
 
-        <h3 class="text-center">Mi perfil</h3>
-        <hr>
+        <div class="progress">
+          <div id="file_bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%"
+            aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+            hola
+          </div>
+        </div>
+
+      </div>
+      <hr>
+
+      <form action="/usuarios/update" method="POST">
+        <!--usamos este input para guardar el id XD se cuachalote es mi pacion -->
+        <input id="user_id" value="{{usuario['_id']}}" style="display: none;">
 
         <div class="form-group">
-          <img id="foto_perfil" class="img-fluid rounded mb-4" src="{{usuario['foto']}}" alt="">
-
-          <label class="d-block">Selecciona una nueva foto de portada</label>
-          <small>Te recomendamos una foto horizontal de buena calidad</small>
-
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-            </div>
-            <div class="custom-file">
-              <input id="user_file" type="file" class="custom-file-input" id="inputGroupFile01"
-                aria-describedby="inputGroupFileAddon01">
-              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-            </div>
-          </div>
-
-          <div class="progress">
-            <div id="file_bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuenow="10"
-              aria-valuemin="0" aria-valuemax="100">
-              hola
-            </div>
-          </div>
-
+          <label for="exampleInputEmail1">Nombre del negocio</label>
+          <input id="test-usuario" type="text" class="form-control" name="usuario" value="{{usuario['nombre']}}">
+          <span id="text-info" style="color: lightslategray;font-size: 12px;">Recuerda que el nombre de
+            usuario es
+            el mismo que el de
+            tu negocio</span>
         </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Telefono</label>
+          <input type="text" class="form-control" name="telefono" value="{{usuario['telefono']}}">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Domicilio</label>
+          <input type="text" class="form-control" name="domicilio" value="{{usuario['domicilio']}}">
+        </div>
+
+        <h5 class="txt-center">Redes sociales</h5>
+        <small>registra el link de tus redes sociales para un mejor funcionamiento</small>
         <hr>
+        <div class="inline-box">
 
-        <form action="/usuarios/update" method="POST">
-          <!--usamos este input para guardar el id XD se cuachalote es mi pacion -->
-          <input id="user_id" value="{{usuario['_id']}}" style="display: none;">
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Nombre del negocio</label>
-            <input id="test-usuario" type="text" class="form-control" name="usuario" value="{{usuario['nombre']}}">
-            <span id="text-info" style="color: lightslategray;font-size: 12px;">Recuerda que el nombre de
-              usuario es
-              el mismo que el de
-              tu negocio</span>
+          <div class="form-group m-2">
+            <label for="exampleInputEmail1">facebook</label>
+            <input type="text" class="form-control" name="facebook" value="{{usuario['facebook']}}">
           </div>
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Telefono</label>
-            <input type="text" class="form-control" name="telefono" value="{{usuario['telefono']}}">
+          <div class="form-group m-2">
+            <label for="exampleInputEmail1">Instagram</label>
+            <input type="text" class="form-control" name="instagram" value="{{usuario['instagram']}}">
           </div>
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Domicilio</label>
-            <input type="text" class="form-control" name="domicilio" value="{{usuario['domicilio']}}">
+          <div class="form-group m-2">
+            <label for="exampleInputEmail1">TikTok</label>
+            <input type="text" class="form-control" name="tiktok" value="{{usuario['tiktok']}}">
           </div>
-
-          <h5 class="txt-center">Redes sociales</h5>
-          <small>registra el link de tus redes sociales para un mejor funcionamiento</small>
-          <hr>
-          <div class="inline-box">
-
-            <div class="form-group m-2">
-              <label for="exampleInputEmail1">facebook</label>
-              <input type="text" class="form-control" name="facebook" value="{{usuario['facebook']}}">
-            </div>
-
-            <div class="form-group m-2">
-              <label for="exampleInputEmail1">Instagram</label>
-              <input type="text" class="form-control" name="instagram" value="{{usuario['instagram']}}">
-            </div>
-
-            <div class="form-group m-2">
-              <label for="exampleInputEmail1">TikTok</label>
-              <input type="text" class="form-control" name="tiktok" value="{{usuario['tiktok']}}">
-            </div>
-          </div>
+        </div>
 
 
-          <a id="ver_menu" class="text-dark" href="">ver mi menu digital</a>
-          <input id="btn-registro" type="submit" class="btn btn-dark w-100" value="Agregar Nuevos Datos">
+        <a id="ver_menu" class="text-dark" href="">ver mi menu digital</a>
+        <input id="btn-registro" type="submit" class="btn btn-dark w-100" value="Agregar Nuevos Datos">
 
-        </form>
-      </div>
+      </form>
+    </div>
 
-      <div class="bg-white pupi-border-card col-md-4 m-2 bg-warning">
+    <div class="bg-white pupi-border-card p-4">
 
-        <h3 class="text-center">mi codigo QR</h3>
-        <hr>
-        <div class="mx-auto" id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
+      <h3 class="text-center">mi codigo QR</h3>
+      <hr>
+      <div class="mx-auto" id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
 
-        <p id="menu_url"> poner aqui el url del menu</p>
+      <p id="menu_url"> poner aqui el url del menu</p>
 
-        <button id="btn_qr" class="btn btn-dark mt-3 w-100">imprimir codigo QR</button>
+      <button id="btn_qr" class="btn btn-dark mt-3 w-100">imprimir codigo QR</button>
 
-        <small>Recuerda imprimir de nuevo tu codigo qr si cambias el nombre de tu negocio</small>
-      </div>
+      <small>Recuerda imprimir de nuevo tu codigo qr si cambias el nombre de tu negocio</small>
     </div>
   </div>
 </main>
 
-<script></script>
 {% endblock contenido %}
 
 {% block scripts %}

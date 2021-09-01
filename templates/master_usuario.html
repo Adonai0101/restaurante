@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div id="load" class="loading ">
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-dark" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30"
+                class="d-inline-block align-top" alt="">
+            Menu Local
+        </a>
+
+        <a href="/master"> Panel</a>
+    </div>
+</nav>
+
+
+<div class="bg-white p-3 m-2 mt-3 rounded">
+
+    <div class="text-center">
+        <h1>{{nombre}}</h1>
+        <h6>{{cant}} productos</h6>
+    </div>
+
+    <hr class="separador">
+
+    {% for x in datos %}
+    <div class="shadow rounded p-2 mb-2">
+
+        <div class="d-flex justify-content-between">
+            <h3>{{x['producto']}}</h3>
+            <button onclick="delete_item('{{x['id']}}')" class="btn btn-danger">delete</button>
+
+        </div>
+
+
+        <div class="master-fotos mt-3">
+            {% set test = x['fotos'] %}
+
+            {% for i in test %}
+            <img src="{{i}}" alt="">
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+</div>
+{% endblock contenido %}
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="{{url_for('static', filename = 'js/master.js')}}"></script>
+{% endblock scripts %}

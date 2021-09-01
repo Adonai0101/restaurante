@@ -108,40 +108,53 @@
 <!--cards-->
 <main class="pt-4 ">
     <h1 class="text-center text-white mb-5">Productos de tipo {{categoria}}</h1>
-    <div class="container">
-        <div class="row">
-            <div class="card-columns mx-auto">
+    <hr class="hr-dash m-4">
 
-                <div class="card sombra m-2 " style="width: 18rem;">
-                    <div class="card-header text-center">
-                        Nuevo producto
-                    </div>
-                    <img src="{{ url_for('static' , filename = 'img/add.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body p-2">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-dark w-100" data-toggle="modal"
-                            data-target="#staticBackdrop">ADD</button>
+
+    <div class="m-4">
+        <div class="contenido p-4 bg-white pupi-border-card">
+
+            <div class="protexion">
+                <div class="pupi-card" data-toggle="modal" data-target="#staticBackdrop">
+                    <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+                    <div class="title-card">
+                        <p class="text-white">Nueva categoria</p>
                     </div>
                 </div>
-
-                {% for i in items %}
-                <div class="card border-0" style="width: 18rem;">
-                    <img src="{{i.fotos[0]}}" class="card-img-top" alt="...">
-                    <div class="card-body p-1">
-
-                        <h3 class="text-center">{{i['nombre']}}</h3>
-                        <p class="card-text">Precio: {{i['precio']}}</p>
-                        <a href="/dashboard/producto/{{i['id']}}" class="btn btn-dark d-block mb-2">Editar</a>
-                        <button id="deleteOne" onclick=" deleteOne('{{i['id']}}') "  class=" btn btn-danger
-                            w-100">Eliminar</button>
-                    </div>
-                </div>
-                {% endfor %}
-
             </div>
-        </div>
 
+
+
+            {% for i in items %}
+
+            <div class="protexion">
+                <div class="pupi-card">
+                    <img class="card-img" src="{{ i.fotos[0]}}" alt="">
+                    <div class="title-card">
+                        <p class="text-white">{{i['nombre']}}</p>
+                    </div>
+
+                    <div class="icon-card">
+
+                          <i class="fas fa-ellipsis-h" lass="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                          
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/dashboard/producto/{{i['id']}}">Editar</a>
+                            <a class="dropdown-item" onclick=" deleteOne('{{i['id']}}') " >Eliminar</a>
+                            
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            {% endfor %}
+
+
+        </div>
     </div>
+
 </main>
 
 {% endblock contenido %}

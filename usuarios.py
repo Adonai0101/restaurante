@@ -73,6 +73,8 @@ def registrar_usuario():
         'telefono' : request.form['telefono'],
         'email' : request.form['email'],
         'password' : encriptar( request.form['password']),
+        'fecha_registro': obtener_fecha(),
+        'fecha_pago': proximo_pago(obtener_fecha()),
         'foto':'../static/img/header-test.jpg',
         'foto_key':'',
         'facebook' : '',

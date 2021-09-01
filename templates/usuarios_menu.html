@@ -18,6 +18,10 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item active list-top">
+                    <a class="nav-link" href="/usuarios/login">Iniciar sesión <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active list-top">
                     <a class="nav-link" href="/usuarios/registro">Regístrate <span class="sr-only">(current)</span></a>
                 </li>
 
@@ -43,13 +47,17 @@
     <div class="row m-0">
 
         <div class="col text-white">
-            <h1 class="h2 mb-3">Que tu menú digital no sea una simple imagen</h1>
-            <p>conecta mejor con tus clientes hazlos, sentir más cómodos un tu menú digital </p>
-            <p>Menú local es una extensión de tu restaurante en la cual puedes mostrarles a tus clientes todos tus productos, haz que tus clientes descubran todos productos que puedes ofrecerles y no solo los que ellos conocen </p>
+            <h1 class="h2 mb-3">Que tu menú digital no sea una simple imagen!</h1>
+            <p>conecta mejor con tus clientes, dales una mejor experiencia un tu menú digital </p>
+            <p>Menú local es una herramienta para tu restaurante en la cual puedes mostrarles a tus clientes todos tus productos, haz que tus clientes descubran todos productos que puedes ofrecerles y no solo los que ellos conocen </p>
             <p>Con menú local puedes mostrar al mundo lo maravillosos que son tus productos </p>
             <p>Administra tus productos y obtén un feedback inmediato de tus clientes </p>
 
-            <a href="/usuarios/registro" class="btn btn-dark mt-5">registrate ahora mismo</a>
+            <div class="d-flex justify-content-around">
+                <a href="/usuarios/registro" class="btn btn-primary mt-5">Registrate ahora mismo</a>
+                <a href="/usuarios/login" class="btn btn-secondary mt-5">Inicia sesión</a>
+            </div>
+
         </div>
         
         <div class="col d-none d-md-flex">
@@ -62,18 +70,21 @@
 
 
 <h1 class="text-white text-center">Nuestros clientes</h1>
-<div class="d-flex justify-content-around flex-wrap">
-    {% for i in usuarios %}
-    <div class="cont-text m-2">
-        <a href="/menu/{{i['id']}}">
-            <img class="card-img" src="{{i['foto']}}" alt="">
-            <div class="text-fload">
-                <p>{{i['nombre']}}</p>
-            </div>
-        </a>
+<div class="container">
+    <div class="contenido">
+        {% for i in usuarios %}
+        <div class="cont-text m-2">
+            <a href="/menu/{{i['id']}}">
+                <img class="card-img" src="{{i['foto']}}" alt="">
+                <div class="text-fload">
+                    <p>{{i['nombre']}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
+
 
 
 

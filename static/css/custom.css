@@ -45,11 +45,6 @@ html{
     margin: 20px;
 }
 
-.pupi-card{
-    border-radius: 5px;
-    background: white;
-    border: solid red 2px;
-}
 
 
 /*mis propios cards*/
@@ -181,3 +176,64 @@ a:hover{
     background: rgb(37, 37, 37);
 }
 
+
+.pupi-btn{
+    background: rgb(22, 21, 22) !important;
+}
+
+
+/*foto de portada*/
+.portada{
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+.carrucel{
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+
+/*para el master*/
+.separador{
+    height: 5px;
+    background: var(--naval);
+}
+
+.master-fotos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.master-fotos img{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.loading{
+    display: none;
+}
+
+.loading.activate{
+    background: white;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.hr-dash{
+    height: 5px;
+    background: white;
+}

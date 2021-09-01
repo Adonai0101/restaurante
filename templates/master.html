@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+
+<div id="load" class="loading ">
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-light" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30"
+                class="d-inline-block align-top" alt="">
+            Menu Local
+        </a>
+
+        <a href="/master/logout">salir</a>
+
+    </div>
+</nav>
+
+<!--tabla-->
+
+<div class="container pt-5">
+    <div class="table-responsive">
+        <table class="table bg-white">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Proximo pago</th>
+                    <th scope="col ">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in usuarios %}
+                <tr class="text-center">
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{ x['nombre'] }}</td>
+
+
+                    {% if x['pago_estado'] == 'deuda' %}
+                        <td class="text-danger">{{ x['fecha_pago'] }}</td>
+                    {% else %}
+                        <td>{{ x['fecha_pago'] }}</td>
+                    {% endif %}
+
+                    <td>
+                        <button onclick="delete_user('{{ x['id'] }}')" class="btn btn-danger m-1">
+                            <i class="fas fa-trash "></i>
+                        </button>
+                        <button onclick="pagar('{{ x['id'] }}')" class="btn btn-primary m-1"><i class="far fa-money-bill-alt"></i></button>
+
+                        <a href="/master/user/{{ x['id'] }}" class="btn btn-warning m-1 text-white">
+                            <i class="fas fa-info-circle "></i>
+                        </a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock contenido %}
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="{{url_for('static', filename = 'js/master.js')}}"></script>
+{% endblock scripts %}
