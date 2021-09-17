@@ -7,7 +7,7 @@
         <a class="navbar-brand" href="#">
             <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30"
                 class="d-inline-block align-top" alt="">
-            Menu Local
+            Menú Zapotlan
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,34 +34,104 @@
 <div class="contenedor mb-4">
     <img class="" style="width: 100%; height: 50vh; object-fit: cover;"
         src="{{ url_for('static' , filename = 'img/header-local.jpg') }}" alt="">
-        <div class="centrado">
-            <h1 class="h2 text-white ">Conecta con tus clientes</h1>
-            <p class="text-white">Tu menú digital en  5 minutos</p>
-        </div>
+    <div class="centrado">
+        <h1 class="h2 text-white ">Conecta con tus clientes</h1>
+        <p class="text-white">Tu menú digital en 5 minutos</p>
+    </div>
 
 </div>
 
 <!--informacion-->
-<div class="container mt-3 mb-5">
+<div class="container mt-3 mb-5 ">
 
-    <div class="row m-0">
 
-        <div class="col text-white">
-            <h1 class="h2 mb-3">Que tu menú digital no sea una simple imagen!</h1>
-            <p>conecta mejor con tus clientes, dales una mejor experiencia un tu menú digital </p>
-            <p>Menú local es una herramienta para tu restaurante en la cual puedes mostrarles a tus clientes todos tus productos, haz que tus clientes descubran todos productos que puedes ofrecerles y no solo los que ellos conocen </p>
-            <p>Con menú local puedes mostrar al mundo lo maravillosos que son tus productos </p>
-            <p>Administra tus productos y obtén un feedback inmediato de tus clientes </p>
 
-            <div class="d-flex justify-content-around">
-                <a href="/usuarios/registro" class="btn btn-primary mt-5">Registrate ahora mismo</a>
-                <a href="/usuarios/login" class="btn btn-secondary mt-5">Inicia sesión</a>
+        <div class="p-3 font-weight-bold text-fat bg-white bolita pupi-col-2">
+            <div>
+                <h1 class="h2 mb-3 text-naval">Que tu menú digital no sea una simple imagen!</h1>
+
+                <p>Menú Zapotlan es una herramienta perfecta para Restaurantes, Cafés y Hoteles,
+                    el cliente ve el Menú de tu negocio en su celular.
+                </p>
+
+                <p>
+                    No se necesita descargar una aplicación, solo apuntas la cámara de tu celular
+                    a un código QR y el Menú aparece, en una forma sencilla, eficiente e higiénica.
+                </p>
+    
+                <div class="d-flex justify-content-around flex-wrap">
+                    <a href="/usuarios/registro" class="btn btn-lg btn-info mt-5">Registrate ahora mismo</a>
+                    <a href="/usuarios/login" class="btn btn-lg btn-secondary mt-5">Inicia sesión</a>
+                </div>
+            </div>
+
+            <div>
+                <img class="img-qrcode bolita" src="{{ url_for('static' , filename = 'img/qr-code.jpg') }}" alt="">
             </div>
 
         </div>
-        
-        <div class="col d-none d-md-flex">
-            <img class="img-fluid rounded-lg" src="{{ url_for('static' , filename = 'img/qr-code.jpg') }}" alt="">
+
+
+</div>
+
+<div class="ventajas bg-white p-5">
+    <h3 class="text-center text-naval font-weight-bold">Ventajas</h3>
+    <hr>
+
+    <div class="d-flex justify-content-around flex-wrap">
+
+        <div class="card border-0" style="width: 11rem;">
+            <img src="{{ url_for('static' , filename = 'img/virus.png') }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title font-weight-bold text-center text-naval">Covid Free</h5>
+                <p class="card-text">Evita el contagio al hacer uso de un Menú tradicional </p>
+
+            </div>
+        </div>
+
+        <div class="card border-0" style="width: 11rem;">
+            <img src="{{ url_for('static' , filename = 'img/dinero.png') }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title font-weight-bold text-center text-naval">Reducción de Costos</h5>
+                <p class="card-text">Evita estar imprimiendo constantemente Menús </p>
+
+            </div>
+        </div>
+
+        <div class="card border-0" style="width: 11rem;">
+            <img src="{{ url_for('static' , filename = 'img/red-social.png') }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title font-weight-bold text-center text-naval">Comparte en redes sociales</h5>
+                <p class="card-text">Te gustó un platillo, compártelo con tus amigos </p>
+
+            </div>
+        </div>
+
+        <div class="card border-0" style="width: 11rem;">
+            <img src="{{ url_for('static' , filename = 'img/info.png') }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title font-weight-bold text-center text-naval">Información detallada</h5>
+                <p class="card-text">Puedes incluir información más detallada, como fotos, o valores nutrimentales</p>
+
+            </div>
+        </div>
+
+        <div class="card border-0" style="width: 11rem;">
+            <img src="{{ url_for('static' , filename = 'img/update.png') }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title font-weight-bold text-center text-naval">Actualización inmediata</h5>
+                <p class="card-text">Puedes modificar platillos o precios al instante</p>
+
+            </div>
+        </div>
+
+        <div class="card border-0" style="width: 11rem;">
+            <img src="{{ url_for('static' , filename = 'img/time.png') }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title font-weight-bold text-center text-naval">Crea tu menú en minutos</h5>
+                <p class="card-text">Ahorra tiempo y dinero al hacerlo tú mismo</p>
+
+            </div>
         </div>
 
     </div>
@@ -69,7 +139,7 @@
 
 
 
-<h1 class="text-white text-center">Nuestros clientes</h1>
+<h1 class="text-white text-center mt-5">Nuestros clientes</h1>
 <div class="container">
     <div class="contenido">
         {% for i in usuarios %}
@@ -83,6 +153,59 @@
         </div>
         {% endfor %}
     </div>
+</div>
+
+<div class="bg-white p-1 mt-5 pupi-col-2">
+
+    <div class="contenedor">
+        <img class="img-full bolita" src="{{ url_for('static' , filename = 'img/comida.jpg') }}" alt="">
+        
+        <div class="texto-encima-derecha text-white">
+            <h1>Comparte en Redes Sociales</h1>
+            <p>¿Al cliente le gustó algo en el menú? En una forma muy sencilla puede compartir el plato a algún amigo o en redes sociales.</p>
+            
+        </div>
+    </div>
+
+    <div class="">
+        <h3 class="text-center font-weight-bold text-naval">¿Cómo puedo integrar Menu Zapotlan en mi negocio?</h3>
+
+        <ul class="pl-5 list-none font-weight-bold text-fat">
+            <li class="mb-3">
+                <div class="d-flex align-items-center ">
+                    <img class="item-img" src="{{ url_for('static' , filename = 'img/datos.png') }}">
+                    <p class="ml-2">1. Regístrate</p>
+                </div>
+                
+            </li>
+
+            <li class="mb-3">
+                <div class="d-flex align-items-center ">
+                    <img class="item-img" src="{{ url_for('static' , filename = 'img/teclado.png') }}">
+                    <p class="ml-2"> 2. Captura la información de tu menú y sube tus fotos</p>
+                </div>
+                
+               
+            </li>
+
+            <li class="mb-3">
+                <div class="d-flex align-items-center">
+                    <img class="item-img" src="{{ url_for('static' , filename = 'img/codeqr.png') }}">
+                    <p class="ml-2">3. Imprime tu código QR o soclita unos con nosotros.</p>
+                </div>
+                
+                
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<!-- pruebalo gatis-->
+<div class=" container mt-5 mb-5 text-white text-center" >
+    <h1 class=""> Pruébalo gratis por 30 días </h1>
+    <a class="btn btn-lg btn-info" href="/usuarios/registro">Empezar</a>
+
 </div>
 
 

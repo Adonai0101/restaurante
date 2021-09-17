@@ -23,6 +23,19 @@ html{
     left: 10px;
 
 }
+
+.texto-encima-derecha{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 300px;
+    width: 500px;
+}
+
 .centrado{
     position: absolute;
     top: 50%;
@@ -236,4 +249,10 @@ a:hover{
 .hr-dash{
     height: 5px;
     background: white;
+}
+
+.cont-centrado{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
