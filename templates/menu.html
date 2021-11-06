@@ -16,12 +16,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 {% for i in categorias %}
-                <li class="nav-item active">
+                <li class="nav-item active"
+                data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                >
                     <a class="nav-link" href="#{{i}}">{{i}}<span class="sr-only">(current)</span></a>
                 </li>
                 {% endfor %}
 
-                <li class="nav-item active list-top">
+                <li class="nav-item active list-top"
+                data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                >
                     <a class="nav-link" href="#footer">contacto<span class="sr-only">(current)</span></a>
                 </li>
 

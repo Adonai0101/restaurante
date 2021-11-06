@@ -115,7 +115,7 @@
     <div class="contenido p-4 bg-white pupi-border-card">
 
       <div class="protexion">
-        <div class="pupi-card" data-toggle="modal" data-target="#staticBackdrop">
+        <div class="pupi-card max" data-toggle="modal" data-target="#staticBackdrop">
           <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
           <div class="title-card">
             <p class="text-white">Nueva categoria</p>
@@ -126,9 +126,9 @@
 
       {% for i in categorias %}
 
-      <div class="protexion">
+      <div class="protexion ">
         <a href="/dashboard/{{i['categoria']}}">
-          <div class="pupi-card">
+          <div class="pupi-card max">
             <img class="card-img" src="{{ i.foto[0]}}" alt="">
             <div class="title-card">
               <p class="text-white">{{i['categoria']}}</p>

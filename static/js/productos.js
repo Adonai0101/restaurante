@@ -25,7 +25,10 @@ add.addEventListener('click', (event) => {
         data: dato
     }).then(resp => {
         $('.modal').modal('hide')
+        const formulario = document.querySelector('#form')
+        formulario.reset()
         location.reload()
+        
     })
 })
 

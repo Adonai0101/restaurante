@@ -4,7 +4,7 @@ import smtplib
 from decouple import config
 
 def enviar_email(destino,codigo):
-    asunto = 'Solicitud de cambio de password, de "Menu Local" '
+    asunto = 'Solicitud de cambio de password, de "Menu Zapotlan" '
     mensaje = "Tu codigo es:\n " + codigo
 
     mensaje = 'Subject:{}\n\n{}'.format(asunto,mensaje)

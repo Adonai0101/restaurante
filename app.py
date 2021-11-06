@@ -9,6 +9,8 @@ from dashboard import dashboard
 from productos import productos
 from menu import menu
 from master import master
+from clientes import clientes
+from panel import panel
 
 #Database
 from database import mongo
@@ -27,6 +29,9 @@ app.register_blueprint(dashboard, url_prefix='/dashboard')
 app.register_blueprint(productos, url_prefix='/productos')
 app.register_blueprint(menu,url_prefix = '/menu')
 app.register_blueprint(master,url_prefix = '/master')
+
+app.register_blueprint(clientes,url_prefix = '/clientes')
+app.register_blueprint(panel,url_prefix = '/panel')
 
 @app.route('/')
 def hello():

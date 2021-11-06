@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<main class="pupi-bg-naval full pupi-cont-center">
+    <div class="bg-white  rounded ">
+
+        <!--msj de error-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger alert-dismissible fade show " role="alert">
+            <strong>Oh no! </strong>
+            {% for message in messages %}
+            {{message}}
+            
+            {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+
+
+        <div class="row p-5 m-0">
+
+            <div class="col pupi-bord ">
+                <h1 class="text-center ">login</h1>
+                <form action="/clientes/login" method="POST" class="">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Correo Electronico</label>
+                        <input name="email" type="email" class="form-control" placeholder="juanita@gmail.com">
+                        <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo electrónico
+                            con nadie más.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Contraseña</label>
+                        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+
+                    <button type="submit" class="btn pupi-bg-naval text-white w-100">Iniciar sesión</button>
+
+                    <div class="mt-2 d-flex justify-content-around">
+                        <small><a href="/clientes/registro" class="d-block text-dark">No tengo una cuenta</a></small>
+                        <small><a href="/clientes/forget/password" class="d-block text-dark">Olvide mi contraseña</a></small>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col d-none d-md-flex">
+                <img class="img-fluid" src="{{url_for('static', filename = 'img/clientes/login.svg')}}" alt="">
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock contenido %}

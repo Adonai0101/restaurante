@@ -206,6 +206,7 @@ def olvide_password():
 
 @usuarios.route('/password',methods = ['POST'])
 def restaurar_password():
+    print('cambiando la contraseña')
     mail = request.form['email']
 
     mail_exist = mongo.db.usuarios.find({'email':mail}).count()
