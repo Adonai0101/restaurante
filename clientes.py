@@ -36,6 +36,7 @@ def registrar_cliente():
         'email' : request.form['email'],
         'password' : encriptar( request.form['password']),
         'foto':'../static/img/clientes/perfil.png',
+        'foto_key':'123',
         'puntos': '3'
     }
 
@@ -213,3 +214,62 @@ def restore_password_post():
         flash(msj)
         
         return redirect('/clientes/restore/password')
+
+#Modificaciones en el perfil de usuario
+
+#modificacion de los datos del perfil
+@clientes.route('/update',methods = ['POST'])
+def update():
+
+    dato = {
+      'nombre':request.json['nombre'],
+      'domicilio':request.json['domicilio'],
+      'telefono':request.json['telefono'],
+    }
+
+    id = session['cliente']
+
+    #actualizamos la datos
+    mongo.db.clientes.update_one(
+
+        {
+            '_id': ObjectId(id)
+        },
+      {
+         '$set':{
+            'nombre': dato['nombre'],
+            'domicilio': dato['domicilio'],
+            'telefono' : dato['telefono']
+      }}
+    )
+
+    return "updated data"
+
+#modificacion de foto de perfil
+@clientes.route('/update/foto',methods = ['POST'])
+def update_foto():
+
+    foto = request.json['foto']
+    foto_key = request.json['foto_key']
+
+    id = session['cliente']
+
+    #eliminamos la foto que se tenia anterior mente
+    user = mongo.db.clientes.find_one({'_id': ObjectId(id)})
+    if not user['foto_key'] == '':
+        destroy_image(user['foto_key'])
+
+    #actualizamos la foto
+    mongo.db.clientes.update_one(
+
+        {
+            '_id': ObjectId(id)
+        },
+      {
+         '$set':{
+            'foto': foto,
+            'foto_key': foto_key,
+      }}
+    )
+
+    return "updated file"

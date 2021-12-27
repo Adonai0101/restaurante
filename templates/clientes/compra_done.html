@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--favicon-->
+        <link rel="icon" href="{{url_for('static', filename = 'img/favicon.png')}}" type="image/png" />
+        <!--icons box-icons -->
+        <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+        <!--my styles-->
+        <link rel="stylesheet" href="{{url_for('static', filename = 'css/styles.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename = 'css/custom.css')}}">
+    <title>Menu Zapotlan</title>
+</head>
+<body>
+        <div class="full mb">
+            <img class="mb" src="{{url_for('static', filename = 'img/clientes/envio.svg')}}" alt="">
+
+            <div class="mb">
+                <h1 class="text-center mb">Excelente compra!</h1>
+                <p>tu pedido llegara lo antes posible</p>
+            </div>
+
+            <a class="btn btn-primary mb" href="/panel"> ir al inicio</a>
+        </div>
+</body>
+</html>

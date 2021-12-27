@@ -1,0 +1,43 @@
+{% extends 'clientes/base.html' %}
+
+{% block contenido %}
+
+
+<div class="baner mb">
+    <img src="{{usuario['foto']}}" alt="??">
+</div>
+
+<h1>{{usuario['nombre']}}</h1>
+
+<hr class="separador">
+
+{% for x in categorias %}
+    <div class="mb">
+        <h1 id="{{x}}" class="text-center text-white text-uppercase">{{x}}</h1>
+
+        <div class="col">
+
+            {% for i in items %}
+            
+                {% if i['categoria'] == x %}
+
+                    <a href="/panel/producto/{{i['id']}}">
+                        <div class="card">
+                            <img class="card-img" src="{{i.foto[0]}}" alt="">
+                            <p class="card-title">{{i['nombre']}}</p>
+                        </div>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+
+
+{% endblock contenido%}
+
+{% block scripts %}
+
+{% endblock scripts %}

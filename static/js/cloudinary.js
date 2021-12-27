@@ -7,7 +7,6 @@ const miniatura = document.getElementById('miniatura')
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/adonai0101/image/upload`
 const CLOUDINARY_UPLOAD_PRESET = 'xn5pdxm9';
 
-
 //para la carga de todas las fotos del sistema
 
 // estos dos arreglos los hago "globales" para que puedan ser leidos desde otro archivo js
@@ -140,4 +139,3 @@ perfil_uploader.addEventListener('change', async (e) => {
     })
 
 })
-

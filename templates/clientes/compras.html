@@ -1,0 +1,19 @@
+{% extends 'clientes/base.html' %}
+
+{% block contenido %}
+    <h1>Mis compras</h1>
+    <hr class="separador mb">
+
+    {% for i in compras  %}
+        <div class="h-card mb">
+            <img src="{{i['foto_producto']}}" alt="">
+            <div>
+                <p>{{i['nombre_producto']}}</p>
+                <p class="mb"><small>{{i['nombre_vendedor']}}</small></p>
+                <p>{{i['estado_compra']}}</p>
+                <p>{{i['fecha']}}</p>
+                
+            </div>
+        </div>
+    {% endfor %}
+{% endblock contenido %}<h1>estas en pedidos</h1>

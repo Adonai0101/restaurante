@@ -1,10 +1,71 @@
 {% extends 'clientes/base.html' %}
 
-
 {% block contenido %}
-    <h1>inicio</h1>
+
+
+    <div class="centrado mb">
+        <input type="text" id="buscador" class="input-tex" placeholder="Busca tu comida favorita &#128270;">
+        
+    </div>
+    <div class="col mb" id="cont_buscador">
+        <!--esperando resultados de js-->
+    </div>
+
+    <h1 class="mb">Favoritos</h1>
+
+    <div class="scroll-x mb">
+
+        <div class="card" style="min-width: 250px;">
+            <img class="card-img" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=780&q=80" alt="">
+            <p class="card-title">hola jeje</p>
+        </div>
+
+        <div class="card" style="min-width: 250px;">
+            <img class="card-img" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=780&q=80" alt="">
+            <p class="card-title">hola jeje</p>
+        </div>
+
+        <div class="card" style="min-width: 250px;">
+            <img class="card-img" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=780&q=80" alt="">
+            <p class="card-title">hola jeje</p>
+        </div>
+
+    </div>
+
+    <h1 class="mb">Más populares</h1>
+
+    <div id="render_rest" class="col">
+        <!--Esperando data de js-->
+    </div>
+
+
+    
+
+
+
 {% endblock contenido %}
 
 {% block scripts %}
+
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!--my js-->
+<script src="{{url_for('static', filename = 'js/render.js')}}"></script>
+
+<script>
+    // la funcion 'render_restaurantes' almacena en un arreglo los valores de los restaurantes
+    // lo hago asi porqu soy noob
+    render_restaurantes()
+
+    get_productos()
+
+    const buscador = document.querySelector('#buscador')
+    const cont_buscador = document.querySelector('#cont_buscador')
+
+    buscador.addEventListener('keyup', filtro_productos)
+
+
+</script>
 
 {% endblock scripts %}

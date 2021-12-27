@@ -256,3 +256,20 @@ a:hover{
     flex-direction: column;
     justify-content: center;
 }
+
+/*Estilos para la pantalla de final de compra*/
+
+.full{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    
+}
+
+.full img{
+    width: 100%;
+}

@@ -1,0 +1,58 @@
+{% extends 'clientes/base.html' %}
+
+{% block contenido %}
+
+<div class="contenedor">
+
+    <div class="slider scroll-x mb">
+        {% for x in producto.fotos %}
+
+        <img src="{{x}}" alt="">
+        {% endfor %}
+
+    </div>
+
+    <div class="data-producto mb">
+        <h1>{{producto['nombre']}}</h1>
+        <p>{{producto['categoria']}}</p>
+        <h2>$ {{producto['precio']}}</h2>
+    </div>
+
+    <div class="cantidad mb">
+        <label for="cantidad">Cantidad: </label>
+
+        <select  class="selector" name="cantidad" id="cantidad">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+    </div>
+
+    <div class="descripcion mb">
+        <p>{{producto['ingredientes']}}</p>
+    </div>
+
+    <div class="mb">
+        <button id="btn_comprar" class="btn btn-primary mb">Comprar</button>
+        <button id="btn_agregar" class="btn btn-secondary mb">Agregar a la cesta</button>
+    </div>
+
+</div>
+
+
+{% endblock contenido %}
+
+{% block scripts %}
+        <!--Axios-->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+        <script src="{{url_for('static', filename = 'js/pedidos.js')}}"></script>
+{% endblock scripts %}

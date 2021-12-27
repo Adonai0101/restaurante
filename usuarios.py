@@ -76,6 +76,7 @@ def registrar_usuario():
         'fecha_registro': obtener_fecha(),
         'fecha_pago': proximo_pago(obtener_fecha()),
         'foto':'../static/img/header-test.jpg',
+        'puntos':1,
         'foto_key':'',
         'facebook' : '',
         'instagram' : '',

@@ -1,25 +1,42 @@
 {% extends 'clientes/base.html' %}
 
 {% block contenido %}
+
+
 <h1 class="text-center mb">Mi perfil</h1>
 <hr class="separador">
 
 
 <div class="centrado">
     <div class="foto-perfil">
-        <img src="../../static/img/clientes/perfil.png" alt="">
+        <img id = "foto_perfil" src="{{cliente['foto']}}" alt="">
+        <input type="file" name="" id="uploader">
     </div>
-    <form class="form" action="">
-        <input class="input-tex" placeholder="nombre" type="text">
-        <input class="input-tex" placeholder="domicilio" type="text">
-        <input class="input-tex" placeholder="telefono" type="text">
+    <form class="form">
+        <label>Nombre</label>
+        <input name = "nombre" class="input-tex" value="{{cliente['nombre']}}" placeholder="nombre" type="text">
+       
+        <label>domicilio</label>
+        <input name = "domicilio" class="input-tex" value="{{cliente['domicilio']}}" placeholder="domicilio" type="text">
+       
+        <label>Telefono</label>
+        <input name = "telefono" class="input-tex" value="{{cliente['telefono']}}" placeholder="telefono" type="text">
 
-        <input class="btn btn-primary" type="submit" value="Enviar">
+        
+        <button id="btn-perfil" class="btn btn-primary">Modificar</button>
     </form>
 </div>
 {% endblock contenido %}
 
 
 {% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script src="{{url_for('static', filename = 'js/files.js')}}"></script>
+
+<!--my js-->
+<script src="{{url_for('static', filename = 'js/panel.js')}}"></script>
 
 {% endblock scripts %}

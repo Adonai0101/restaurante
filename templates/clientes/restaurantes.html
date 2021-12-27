@@ -1,0 +1,40 @@
+{% extends 'clientes/base.html' %}
+
+{% block contenido %}
+
+<div class="centrado mb">
+    <input type="text" id="buscador" class="input-tex" placeholder="Busca tu restaurantes favorito &#128270;">
+</div>
+
+<div id="cont_buscador" class="col mb">
+    <!--Esèrandp datos de js-->
+</div>
+
+<h1 class="mb">Restaurantes</h1>
+
+<div class="col" id="render_rest">
+    <!--Esèrandp datos de js-->
+</div>
+
+{% endblock contenido %}
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!--my js-->
+<script src="{{url_for('static', filename = 'js/render.js')}}"></script>
+
+<script>
+    // la funcion 'render_restaurantes' almacena en un arreglo los valores de los restaurantes
+    // lo hago asi porqu soy noob
+    render_restaurantes()
+
+    const buscador = document.querySelector('#buscador')
+    const cont_buscador = document.querySelector('#cont_buscador')
+
+    buscador.addEventListener('keyup', filtro_restaurantes)
+
+</script>
+
+{% endblock scripts %}
