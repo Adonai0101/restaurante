@@ -34,8 +34,8 @@ app.register_blueprint(clientes,url_prefix = '/clientes')
 app.register_blueprint(panel,url_prefix = '/panel')
 
 @app.route('/')
-def hello():
-    return redirect('/menu')
+def index():
+    return render_template('/landingpage/index.html')
 
 @app.route('/terminoscondiciones')
 def terminos():

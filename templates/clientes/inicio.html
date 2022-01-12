@@ -15,20 +15,16 @@
 
     <div class="scroll-x mb">
 
-        <div class="card" style="min-width: 250px;">
-            <img class="card-img" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=780&q=80" alt="">
-            <p class="card-title">hola jeje</p>
-        </div>
+        {% for x in favoritos  %}
+        <a href="/panel/producto/{{x['id']}}">
+            <div class="card" style="min-width: 250px;">
+                <img class="card-img" src="{{x['foto']}}" alt="">
+                <p class="card-title">{{x['nombre']}}</p>
+            </div>
+        </a>
 
-        <div class="card" style="min-width: 250px;">
-            <img class="card-img" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=780&q=80" alt="">
-            <p class="card-title">hola jeje</p>
-        </div>
+        {% endfor %}
 
-        <div class="card" style="min-width: 250px;">
-            <img class="card-img" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=780&q=80" alt="">
-            <p class="card-title">hola jeje</p>
-        </div>
 
     </div>
 

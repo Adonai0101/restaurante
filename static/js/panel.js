@@ -20,7 +20,6 @@ bnt_perfil.addEventListener('click',(e) =>{
         data: dato
     }).then(resp => {
         console.log('se envio')
-        
     })
 
 })

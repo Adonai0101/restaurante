@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--favicon-->
+    <link rel="icon" href="{{url_for('static', filename = 'img/favicon.png')}}" type="image/png" />
+    <!--icons box-icons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!--my styles-->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/styles.css')}}">
+    <title>Menu zapotlán</title>
+</head>
+
+<body>
+    <nav class="nav nav-bar">
+        <div class="nav-title">
+            <h1>menu zapotlan</h1>
+        </div>
+
+        <div class="">
+            <ul class="nav-list">
+                <a href="/usuarios/registro">
+                    <li>Empresa</li>
+                </a>
+                <a href="/clientes/login">
+                    <li>Iniciar sesion</li>
+                </a>
+                
+                <a href="/clientes/registro">
+                    <li>Regístrate</li>
+                </a>
+                
+            </ul>
+        </div>
+
+        <div class="btn-hiden">
+            <button onclick="sidebar_toggle()" class="nav-btn">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="sidebar-fixed">
+
+        <div>
+            <a class="link-btn" href="/clientes/login"> Inicia sessión</a>
+
+            <ul class="mb mt">
+                <a class="link" href="/usuarios/registro">
+                    <li class="link-item"> Crea una cuenta de tu negocio</li>
+                </a>
+                
+                <a class="link" href="https://api.whatsapp.com/message/O63CVCMHCMN6E1">
+                    <li class="link-item"> Regístrate para realizar entregas</li>
+                </a>
+                
+            </ul>
+        </div>
+    </div>
+
+    <div class="cont-main">
+        <div class="fondo">
+            <h1>Recibe tu comida facil y rapido</h1>
+            <p class="mt">
+                Una plataforma de servicio a domicilio que lleva tu comida de tu restaurante favorito a tu puerta.
+            </p>
+
+            <div class="right">
+                <a class="btn btn-dark " href="/clientes/login"> Inicia sessión</a>
+            </div>
+            
+        </div>
+
+
+        <div class="col-flex top">
+            <div class="card"  style="width: 20rem;">
+                <img class="card-img" src="{{url_for('static', filename = 'img/pizza.jpg')}}" alt="">
+                <p class="card-title">Pide de tus restaurantes favoritos</p>
+            </div>
+
+            <div class="card"  style="width: 20rem;">
+                <img class="card-img" src="{{url_for('static', filename = 'img/smart.jpg')}}" alt="">
+                <p class="card-title">Pide sin complicaciones</p>
+            </div>
+
+            <div class="card"  style="width: 20rem;">
+                <img class="card-img" src="{{url_for('static', filename = 'img/delibery.jpg')}}" alt="">
+                <p class="card-title">Entrega expres</p>
+            </div>
+        </div>
+
+        
+    </div>
+
+
+
+
+</body>
+
+<script src="{{url_for('static', filename = 'js/styles.js')}}"></script>
+
+</html>

@@ -11,7 +11,7 @@
     <div class="modal ">
         <div class="modal_cont">
             <div class="modal_band">
-              <button class="btn modal_close"><i class='bx bx-x'></i></button>
+              <button onclick="modal_show()" class="btn modal_close"><i class='bx bx-x'></i></button>
             </div>
             <div class="modal_contenido">
                 <h3>Agrega una nueva dirección</h3>
@@ -20,8 +20,8 @@
                 <div>
                     <form>
                         <label>Domicilio</label>
-                        <input id="new_dom" name = "domicilio" class="input-tex mb" type="text">
-                       <small class="mb">domicilio , numero y coloni</small>
+                        <input id="new_dom"  name = "domicilio" class="input-tex mb" type="text">
+                        <small class="mb">domicilio , numero y coloni</small>
                         <button id="btn-dom-modal" class="btn btn-primary">Agregar</button>
                     </form>
                 </div>
@@ -35,11 +35,18 @@
         <h3>Datos de entrega</h3>
 
         <div >
-            <p >Domicilio:<span id="domicilio">{{cliente['domicilio']}}</span> </p>
+            <p >Domicilio:<span id="domicilio"> {{cliente['domicilio']}}</span> </p>
             
             <p>Telefono: {{cliente['telefono']}}</p>
         </div>
-        <button id="otra_direccion" style="color:steelblue" class="btn">usar otra direccion</button>
+        <button onclick="modal_show()" style="color:steelblue" class="btn">usar otra direccion</button>
+    </div>
+
+    <div class="shadow mb">
+        <form>
+            <label>Agrega una nota para el vendedor</label>
+            <textarea id="nota" class="input-tex mb" name="" ></textarea>
+        </form>
     </div>
 
     <div id="cont-producto" class="shadow mb">

@@ -2,6 +2,7 @@ from flask import Blueprint,jsonify, request, Response,session,render_template,f
 
 from bson import json_util
 from bson.objectid import ObjectId
+from pymongo.read_preferences import Primary
 from werkzeug.utils import environ_property
 
 #Database
@@ -25,20 +26,24 @@ def index():
     if 'cliente' in session:
         
         id = session['cliente']
-        
-        # "modulo" de Favoritos
-        pedidos = mongo.db.pedidos.find({'id_cliente':id}).count()
-        if pedidos:
-            print('si tiene pedidos')
-        else:
-            print('no hay')
-        
 
+        #modulo de favoritos
         favoritos = []
-        # "moduki" de populares
-        populares = []
-
-        return render_template('clientes/inicio.html')
+        arg = []
+        res = mongo.db.compras.find({'id_cliente':id})
+        for i in res:
+            if i['id_producto'] in arg:
+                pass    # un iz filtro
+            else:
+                arg.append(i['id_producto'])
+                temp = {
+                    'id':i['id_producto'],
+                    'nombre':i['nombre_producto'],
+                    'foto':i['foto_producto']
+                }
+                favoritos.append(temp)
+        favoritos = favoritos[0:5]
+        return render_template('clientes/inicio.html', favoritos = favoritos)
     else:
         return redirect('/clientes/login')
 
@@ -149,14 +154,13 @@ def post_comprar():
         id_cliente = session['cliente']
         orden = session['orden']
         domicilio = request.json['domicilio']
+        nota = request.json['nota']
         precio_envio = 30
 
         #obtenemos los datos de cada coleccion
 
         producto = mongo.db.productos.find_one({'_id':ObjectId(orden['id_producto'])})
-        print("********* producto P??????¿¿¿¿¿")
-        print()
-
+ 
         id_vendedor = producto['user_id']
 
         vendedor = mongo.db.usuarios.find_one({'_id':ObjectId(id_vendedor)})
@@ -175,6 +179,7 @@ def post_comprar():
             'id_cliente': str(cliente['_id']),
             'nombre_cliente':cliente['nombre'],
             'telefono_cliente':cliente['telefono'],
+            'email_cliente':cliente['email'],
             'domicilio_cliente':domicilio,
 
             #datos del producto
@@ -186,11 +191,12 @@ def post_comprar():
 
             # mas datos de la compra
             #id de la compra, se genera al hacer la insercion en la DB
+            'nota':nota,
             'cantidad_producto':orden['cantidad'],
             'precio_envio':precio_envio,
             'total': ( int(producto['precio']) * int(orden['cantidad']) ) + precio_envio,
             'estado_compra':'pendiente',
-            'fecha': '20/12/21'
+            'fecha': obtener_fecha()
             #---
         }
 
@@ -198,9 +204,10 @@ def post_comprar():
         id_compra = mongo.db.compras.insert(datos_compra)
 
         #notificar al vendedor
-        
-        #simulando procesos eliminar luego xd
-        time.sleep(5)
+        mail_vendedor = vendedor['email']
+        asunto = "Nuevo pedido"
+        msj = "Tienes un nuevo pedido!! \n Revisalo en https://menuzapotlan.club/dashboard/pedidos"
+        mail_notificacion(mail_vendedor,asunto,msj)
 
 
         return "agregar una buena respuesta xd"
@@ -243,7 +250,7 @@ def show_pedidos():
 
         id_cliente = session['cliente']
         compras = []
-        res =  mongo.db.compras.find({'id_cliente':id_cliente})
+        res =  mongo.db.compras.find({'id_cliente':id_cliente}).sort('fecha',-1)
         for i in res:
             compras.append(i)
         return render_template('/clientes/compras.html', compras =  compras)

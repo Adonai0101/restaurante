@@ -5,6 +5,7 @@ from bson import json_util
 from bson.objectid import ObjectId
 
 from tools import *
+from send_mail import *
 
 dashboard = Blueprint('dashboard', __name__)
 
@@ -69,3 +70,83 @@ def producto(id):
     else:
         return redirect('/usuarios/login')
 
+
+
+#agregamos las rutas para ver los pedidos
+
+@dashboard.route('/pedidos')
+def show_pedidos():
+    if 'usuario' in session:
+        
+        id_vendedor = session['usuario']
+
+        pedidos = []
+        res =  mongo.db.compras.find({'id_vendedor':id_vendedor})
+        for i in res:
+            pedidos.append(i)
+        
+        return render_template('/vendedores/pedidos.html',pedidos = pedidos)
+    else:
+        return redirect('/usuarios/login')
+
+
+@dashboard.route('/pedido/<id>')
+def show_pedido(id):
+    if 'usuario' in session:
+
+        id_usuario = session['usuario']
+        res =  mongo.db.compras.find_one({'_id':ObjectId(id)})
+        # pequeña validacion para que solo el vendedor pueda ver su pedido
+        if not session['usuario'] == res['id_vendedor']:
+            return redirect('/dashboard')
+        else:
+            session['done'] = "validate_done"
+            return render_template('/vendedores/pedido.html', pedido = res , usuario = id_usuario)
+    else:
+        return redirect('/usuarios/login')
+
+@dashboard.route('/pedido/done/<id>')
+def done_pedido(id):
+    if 'usuario' in session:
+        if 'done' in session:
+            session.pop("done",None)
+
+            #updating pedido
+            mongo.db.compras.update_one(
+                {
+                    '_id': ObjectId(id)
+                },
+                {
+                    '$set':{
+                        'estado_compra':'hecho'
+                }}
+            )
+
+            #obteniendo el email del cliente
+            res =  mongo.db.compras.find_one({'_id':ObjectId(id)})
+            print(res['email_cliente'])
+            #notificar al repartidor
+            #notificar al usuario
+            mail_vendedor = res['email_cliente']
+            asunto = "Tu pedido esta en camino!!"
+            msj = "Tu pedido fue terminado, en breve un repartidor llegara a tu domicilio"
+            mail_notificacion(mail_vendedor,asunto,msj)
+
+
+            return redirect('/dashboard/pedidos')
+        else:
+            return "a quien quieres engañar  hijo de perra"
+    else:
+        return redirect('/usuarios/login')
+
+
+@dashboard.route('/get/vendedor')
+def get_vendedor():
+    if 'usuario' in session:
+        id = session['usuario']
+        vendedor = mongo.db.usuarios.find_one({'_id':ObjectId(id)})
+        del vendedor['password'] 
+        response = json_util.dumps(vendedor)
+        return response
+    else:
+        return "no tienes permiso para ver esta shit"

@@ -1,19 +1,4 @@
 
-
-/* 
-const close_alert = document.querySelector('#close_alert')
-close_alert.addEventListener('click',function(){
-    hide_alert()
-})
-
-const btn_show = document.querySelector('#alerta')
-btn_show.addEventListener('click',function(){ 
-    show_alert()
-})
-
-*/
-
-
 function show_alert(){
     const alert =  document.querySelector('.alert')
     alert.classList.remove('hide')
@@ -29,8 +14,20 @@ function hide_alert(){
     alert.classList.add('hide')
 }
 
+// activar o desactivar el modal
+function modal_show(){
+    const modal = document.querySelector('.modal')
+    modal.classList.toggle('modal_show')
+}
 
 
+//activat o desactivar el sidebar
+
+function sidebar_toggle(){
+    const activar = document.querySelector('.sidebar-fixed')
+    activar.classList.toggle('active')
+    console.log('puchado')
+}
 
 
 const btn_sidebar = document.querySelector('.nav-btn')
@@ -41,15 +38,11 @@ btn_sidebar.addEventListener('click',function(){
 })
 
 
-const modal_close = document.querySelector('.modal_close')
-modal_close.addEventListener('click',modal_show)
 
 
-// activar o desactivar el modal
-function modal_show(){
-    const modal = document.querySelector('.modal')
-    modal.classList.toggle('modal_show')
-}
+
+
+
 
 
 
