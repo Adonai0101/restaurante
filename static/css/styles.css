@@ -39,6 +39,9 @@
 .bg-ligth{
     background-color: var(--bg-ligth);
 }
+.bg-danger{
+    background-color: var(--bg-danger-x);
+}
 
 
 .nav{
@@ -187,7 +190,10 @@
 }
 
 .mb{
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
+}
+.mb-x{
+    margin-bottom: 20px;
 }
 .mt{
     margin-top: 10px;
@@ -296,6 +302,76 @@
         transform: rotate(360deg);
     }
 }
+/*::::::::::::::::::::::::::: div loader spinner ::::::::::::::::::::::::::::::::::::::*/
+.cont-loader{
+    position: relative;
+}
+.loader{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color:rgba(0,0,0,0.3);
+    border-radius: 5px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader.active{
+    display: flex;
+}
+
+/*::::::::::::::::::::::::::: menu card::::::::::::::::::::::::::::::::::::::*/
+.card-btn{
+    position: absolute;
+    top : 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: solid 1px lightgray;
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.btn-card-danger{
+    background-color: var(--bg-danger-x);
+    border-color: #f5c2c7;
+}
+
+.card-btn i{
+    font-size: 30px;
+}
+.card-menu{
+    padding: 15px;
+    position: absolute;
+    top : 55px;
+    right: 15px;
+    background: white;
+    border-radius: 5px;
+
+    transform: scale(0);
+    transition: transform .3s;
+}
+
+.card-menu.active{
+    transform: scale(1);
+}
+
+.card-menu ul li{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.card-menu ul li:hover{
+    background-color: red;
+}
+
 
 /*::::::::::::::::::::::::::: full pantalla ::::::::::::::::::::::::::::::::::::::*/
 
@@ -314,12 +390,14 @@
     display: flex;
 }
 
+
 /*::::::::::::::::::::::::::: cards ::::::::::::::::::::::::::::::::::::::*/
 
 .card{
     /*el width para el card depende de cada utilidad que se le de*/  
     border-radius: 10px;
     position: relative;
+    
 }
 
 .card-img{
@@ -394,6 +472,7 @@
 
     display: flex;
     justify-content: center;
+    z-index: 9;
 
 }
 
@@ -403,8 +482,7 @@
 
 .modal_cont{
     background: white;
-    width: 80%;
-    height: 80%;
+    width: 95%;
     border-radius: 10px;
 }
 
@@ -456,6 +534,9 @@
     padding: 10px;
     columns: 5 120px;
 }
+.col-2{
+    columns: 2 250px;
+}
 
 .col-flex{
     display: flex;
@@ -463,6 +544,50 @@
     gap: 20px;
     justify-content: center;
 }
+
+.col-flex-nowrap{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.colums-2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.col-2-break{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.col-1-2-break{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+}
+@media (max-width: 900px) {
+    .col-2-break{
+        grid-template-columns: 1fr;
+    }
+
+    .col-1-2-break{
+        grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 1300px) {
+    .col-flex-nowrap{
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+  }
+
+
 
 
 /*slider*/
@@ -515,6 +640,27 @@ hr{
 
 /*estilos piteros que no perteneces a los componentes*/
 
+.border{
+    border: solid 1px gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+.p-1{
+    padding: 5px;
+}
+
+.miniatura{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.miniatura img{
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+}
+
 .pendiente{
     border-radius: 5px;
     padding: 5px;
@@ -549,7 +695,9 @@ hr{
 }
 
 
-
+.pointer{
+    cursor: pointer;
+}
 
 /*alerts*/
 .alert{
@@ -649,13 +797,49 @@ hr{
     width: 50%;
 }
 
+.container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-center{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 30px;
+}
+
+
+
+.flag{
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transform: scale(1);
+    transition: transform .3s;
+}
+
+
+.flag-danger{
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
 
 
 /*diseñando la landing page*/
 
+.haz-click{
+    color: steelblue;
+    display: inline;
+    border-bottom: solid 1px gray ;
+}
+
 .cont-main{
-    
-    
     background-image: url('../img/fondo.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -705,5 +889,49 @@ hr{
 
 .text-right{
     text-align: right;
+}
+
+
+.cont{
+    margin: 50px;
+}
+
+
+
+/*estilos del horario*/
+.btn-cerrar{
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--bg-danger-x);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.border-danger{
+    border: solid 1px red;
+}
+
+.img{
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+}
+
+.img-just{
+    width: 100%;
+    height: 100%;
+    max-height: 350px;
+}
+
+.mt-100{
+    margin-top: 100px;
+}
+
+.rounded{
+    border-radius: 5px;
+}
+
+.ajuste{
+    overflow-y: hidden;
 }
 

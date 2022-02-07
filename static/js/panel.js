@@ -24,6 +24,17 @@ bnt_perfil.addEventListener('click',(e) =>{
 
 })
 
+
+// boton para activar el input-file
+
+const btn_active = document.querySelector('#active_file')
+btn_active.addEventListener('click', (e) => {
+    e.preventDefault()
+    uploader.click()
+})
+
+
+
 //subida de foto de perfil
 const uploader = document.getElementById('uploader') 
 uploader.addEventListener('change', async(e) => {

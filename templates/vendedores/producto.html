@@ -1,0 +1,95 @@
+{% extends 'vendedores/base.html' %}
+
+{% block contenido %}
+<h1>Productos</h1>
+<hr class="separador">
+
+<!--modal-->
+<div class="modal ">
+    <div class="modal_cont">
+        <div class="modal_band">
+            <button onclick="modal_show()" class="btn modal_close"><i class='bx bx-x'></i></button>
+        </div>
+        <div class="modal_contenido">
+            <h4>Agrega un nuevas imagenes</h4>
+            <hr class="separador">
+
+            <div class="cont-loader">
+                <div class="loader">
+                    <!--spiner como loader-->
+                    <div class="spinner"></div>
+                </div>
+                <!-- div pàra subir fotos-->
+                <div class="border mt mb p-1">
+                    <div class="miniatura mb" id="miniatura">
+                        <!--Esperando fotos de js-->
+                        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+                        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+                        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+                    </div>
+                    <input hidden type="file" id="img-uploader">
+                    <button class="btn btn-dark" id="btm_img-uploader">Subir foto</button>
+                </div>
+
+                <button onclick="addImg('{{producto._id}}')" class="btn btn-primary">Agregar imagenes</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="col-flex-nowrap">
+    <div class="border" style="min-width: 400px;">
+        <h3>Informacion del producto</h3>
+        <hr>
+        <form id="form">
+            <label for="">Nombre del producto</label>
+            <input value="{{producto['nombre']}}" id="nombre"  class="input-tex mb" type="text">
+            <label for="">Categoria del producto</label>
+            <input value="{{producto['categoria']}}" id="categoria" class="input-tex mb" type="text">
+            <label for="">Precio</label>
+            <input value="{{producto['precio']}}" id="precio"  class="input-tex mb" type="text">
+            <label for="">Descripción</label>
+            <input value="{{producto['ingredientes']}}" id="ingredientes" class="input-tex mb"type="text">
+            <button onclick="update_info('{{producto._id}}')" class="btn btn-primary">Editar</button>
+        </form>
+    </div>
+
+    <div class="col-flex ">
+
+        <div onclick="modal_show()" class="card pointer" style="min-width: 250px; height: 210px;">
+            <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+            <p class="card-title">Nueva foto</p>
+        </div>
+
+        {% for i in producto['fotos'] %}
+        <div class="card" style="min-width: 250px;">
+            <!--btn para la card-->
+            <div class="card-btn btn-card-danger" onclick="deleteImage('{{producto._id}}', '{{i}}', '{{producto.publicID[loop.index - 1]}}')">
+                <i class='bx bx-message-square-x'></i>
+            </div>
+            <img class="card-img" src="{{i}}" alt="">
+            
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock contenido %}
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--sweet arlert-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!--subida de imagenes-->
+<script src="{{url_for('static', filename = 'js/cloudinary.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/productos.js')}}"></script>
+
+{% endblock scripts %}

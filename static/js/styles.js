@@ -14,6 +14,18 @@ function hide_alert(){
     alert.classList.add('hide')
 }
 
+//toggle loader
+function loader_toggle(){
+    const spinner_loader = document.querySelector('.loader')
+    spinner_loader.classList.toggle('active')
+}
+
+//toggle btn-card
+function btn_card_toggle(id){
+    const menu = document.querySelector('#' + id)
+    menu.classList.toggle('active')
+}
+
 // activar o desactivar el modal
 function modal_show(){
     const modal = document.querySelector('.modal')

@@ -1,0 +1,117 @@
+{% extends 'vendedores/base.html' %}
+
+{% block contenido %}
+
+<h1>perfil</h1>
+<hr class="separador">
+
+<!--alert-->
+<div class="alert danger hide">
+    <i class='bx bx-sad alert-icon'></i>
+    <p>horario equivocado</p>
+</div>
+
+<!--Este div es el que engloba a los datos del perfil y el perro horario-->
+<div class="col-2-break">
+    <div id="datos_perfil">
+
+        <div id="cont_foto_perfil" class="mb-x">
+            <img id="foto_perfil" class="img rounded" src="{{vendedor['foto']}}" alt="">
+            <button id="active_file" class="btn btn-dark"> subir foto</button>
+            <input id="user_file" type="file" hidden>
+        </div>
+
+        <div id="info_vendedor" class="mt">
+            <form action="/usuarios/update" method="POST">
+                <!--usamos este input para guardar el id XD se cuachalote es mi pacion -->
+                <input id="user_id" value="{{vendedor['_id']}}" style="display: none;">
+    
+                <div class="mb">
+                    <label>Nombre del negocio</label>
+                    <input id="test-usuario" type="text" class="input-tex" name="usuario" value="{{vendedor['nombre']}}">
+                    <span id="text-info" style="color: lightslategray;font-size: 12px;">Recuerda que el nombre de
+                        usuario es
+                        el mismo que el de
+                        tu negocio</span>
+                </div>
+    
+                <div class="mb">
+                    <label>Telefono</label>
+                    <input type="text" class="input-tex" name="telefono" value="{{vendedor['telefono']}}">
+                </div>
+    
+                <div class="mb">
+                    <label>Domicilio</label>
+                    <input type="text" class="input-tex" name="domicilio" value="{{vendedor['domicilio']}}">
+                </div>
+    
+                <div id="contenedor_redes_sociales" class="mt">
+                    <h3 class="txt-center">Redes sociales</h3>
+                    <small>registra el link de tus redes sociales para un mejor funcionamiento</small>
+                    <hr>
+                    <div class="inline-box">
+    
+                        <div class="form-group m-2">
+                            <label>facebook</label>
+                            <input type="text" class="input-tex" name="facebook" value="{{vendedor['facebook']}}">
+                        </div>
+    
+                        <div class="form-group m-2">
+                            <label>Instagram</label>
+                            <input type="text" class="input-tex" name="instagram" value="{{vendedor['instagram']}}">
+                        </div>
+    
+                        <div class="form-group m-2">
+                            <label>TikTok</label>
+                            <input type="text" class="input-tex" name="tiktok" value="{{vendedor['tiktok']}}">
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <a id="ver_menu" href="">ver mi menu digital</a>
+                <input id="btn-registro" type="submit" class="btn btn-primary" value="Agregar Nuevos Datos">
+    
+            </form>
+        </div>
+
+    </div>
+
+    <div id="cont_horario">
+        <h3>Horario</h3>
+        <hr>
+        {% set horario = vendedor['horario'] %}
+        <form id="horario">
+            
+            {% for x in horario %}
+            <div class="colums-2 mb mt">
+
+                <div class="colums-2 ">
+                    <h4>{{x}}</h4>
+                    <div>
+                        <i onclick="cerrado('{{x}}')" class='bx bxs-x-circle btn-cerrar'></i>
+                    </div>
+
+                </div>
+
+                <div class="colums-2">
+                    <input class="input-tex" value="{{horario[x].0}}" type="time" id="{{x}}_inicio">
+                    <input class="input-tex" value="{{horario[x].1}}" type="time" id="{{x}}_fin">
+                </div>
+            </div>
+            {% endfor %}
+            <button id="btn-horario" class="btn btn-primary">Agregar nuevo horario</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock contenido %}
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{url_for('static', filename = 'js/file_vendedor.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/horario.js')}}"></script>
+
+{% endblock scripts %}

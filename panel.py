@@ -101,7 +101,41 @@ def show_restaurante(id):
 def show_producto(id):
     if 'cliente' in session:
         producto = mongo.db.productos.find_one({'_id':ObjectId(id)})
-        return render_template('clientes/producto.html',producto = producto)
+
+        user_id = producto['user_id']
+        vendedor = mongo.db.usuarios.find_one({'_id':ObjectId(user_id)})
+
+        bandera = True
+        dia = dia_semana()
+        horario = vendedor['horario'][dia]
+        """
+        print(horario[0])
+        print(convertir_hora(horario[0]))
+        print(hora_actual())
+        """
+        if horario[0] == '' or horario[1] == '':
+            print('cerrado')
+            bandera = False
+        else:
+            if horario[0] or horario[1]:
+                bandera = True
+                print('si hay')
+                hora_inicio = convertir_hora(horario[0])
+                hora_fin = convertir_hora(horario[1])
+                if hora_actual() < hora_inicio or hora_actual() > hora_fin:
+                    print('cerrado')
+                    bandera = False
+                else:
+                    bandera = True
+                    print('abierto')
+            else:
+                print('cerrado')
+                bandera = False
+                
+
+        
+
+        return render_template('clientes/producto.html',producto = producto , vendedor = vendedor , bandera = bandera)
     else:
         return redirect('/clientes/login')
 

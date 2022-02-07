@@ -17,7 +17,7 @@
 <body>
     <nav class="nav nav-bar">
         <div class="nav-title">
-            <h1>menu zapotlan</h1>
+            <h1>menu zapotlán</h1>
         </div>
 
         <div class="">
@@ -49,6 +49,11 @@
             <a class="link-btn" href="/clientes/login"> Inicia sessión</a>
 
             <ul class="mb mt">
+                
+                <a class="link" href="/usuarios/login">
+                    <li class="link-item"> Administra tu negocio</li>
+                </a>
+
                 <a class="link" href="/usuarios/registro">
                     <li class="link-item"> Crea una cuenta de tu negocio</li>
                 </a>
@@ -61,39 +66,57 @@
         </div>
     </div>
 
-    <div class="cont-main">
-        <div class="fondo">
-            <h1>Recibe tu comida facil y rapido</h1>
-            <p class="mt">
-                Una plataforma de servicio a domicilio que lleva tu comida de tu restaurante favorito a tu puerta.
-            </p>
-
-            <div class="right">
-                <a class="btn btn-dark " href="/clientes/login"> Inicia sessión</a>
+    <div class="cont">
+        <div class="col-2-break">
+            <div class="mb container">
+                <div>
+                    <h2 class="mb">Ordena comida de restaurantes locales y recibe en minutos.</h2>
+                    <p class="mt">Somos la App de Entregas a Domicilio 100% de Zapotlán.
+                        Nos encanta la comida al igual que a ti y queremos que la disfrutes como si tu mismo fueras por ella. 
+                        Claro, desde la comodidad de tu hogar. Nosotros nos encargamos del resto.</p>
+                </div>
             </div>
-            
+            <img class="mt img-just" src="{{url_for('static', filename = 'img/lan-1.svg')}}"  alt="">
         </div>
 
 
-        <div class="col-flex top">
-            <div class="card"  style="width: 20rem;">
-                <img class="card-img" src="{{url_for('static', filename = 'img/pizza.jpg')}}" alt="">
-                <p class="card-title">Pide de tus restaurantes favoritos</p>
-            </div>
+        <div class="col-2-break mt-100">
+            <img class="mt img-just" src="{{url_for('static', filename = 'img/lan-3.svg')}}"  alt="">
 
-            <div class="card"  style="width: 20rem;">
-                <img class="card-img" src="{{url_for('static', filename = 'img/smart.jpg')}}" alt="">
-                <p class="card-title">Pide sin complicaciones</p>
-            </div>
-
-            <div class="card"  style="width: 20rem;">
-                <img class="card-img" src="{{url_for('static', filename = 'img/delibery.jpg')}}" alt="">
-                <p class="card-title">Entrega expres</p>
+            <div class="mb container">
+                <div>
+                    <h2 class="mb">Comienza a utilizar nuestra app </h2>
+                    <p class="mt mb">No necesitas descargar nada, puedes acceder a
+                         tu cuenta desde cualquier dispositivo solo haz <a class="haz-click" href="/clientes/registro">click aquí </a>
+                         y cambia la forma de ordenar comida a domicilio  </p>
+                    <a class="btn btn-dark mt" href="/clientes/login">Iniciar sesión  </a>
+                </div>
             </div>
         </div>
 
-        
+
+        <div class="col-2-break mt-100">
+            <div class="mb container">
+                <div>
+                    <h2 class="mb">¿Quieres vender tus productos en Menu Zapotlán?</h2>
+                    <p class="mt mb">Haz que tus clientes tengan una mejor experiencia y vende tus productos en toda la ciudad sin invertir en logística.</p>
+                    <a class="btn btn-dark mt" href="/usuarios/registro">Quiero empezar a vender </a>
+                </div>
+            </div>
+            <img class="mt img-just" src="{{url_for('static', filename = 'img/lan-2.svg')}}"  alt="">
+        </div>
+
+
+
     </div>
+
+
+
+  
+
+
+
+
 
 
 

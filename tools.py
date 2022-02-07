@@ -1,3 +1,4 @@
+from tokenize import Double
 from validate_email import validate_email
 
 import datetime
@@ -39,3 +40,34 @@ def desencriptar(cad):
         temp = ord(i) - 1
         msj  = msj + chr(temp)
     return msj 
+
+
+def dia_semana():
+    x = datetime.datetime.now()
+    dias = {
+        'MONDAY':'Lunes',
+        'TUESDAY':'Martes',
+        'WEDNESDAY':'Miercoles',
+        'THURSDAY':'Jueves',
+        'FRIDAY':'Viernes',
+        'SATURDAY':'Sabado',
+        'SUNDAY':'Domingo'
+    }
+    fecha = datetime.date(x.year, x.month, x.day)
+    dia = dias[fecha.strftime('%A').upper()]
+    return dia
+
+def hora_actual():
+    #del punto decimal a la izquierda son las horas
+    #y del punto decimal a la derecha son los minutos
+    now = datetime.datetime.now()
+    time = str(now.hour) + '.' + str(now.minute)
+    time = float(time)
+    return time
+
+
+def convertir_hora(cad):
+    hora = cad.replace(':', '.')
+    hora = float(hora)
+    return  hora
+

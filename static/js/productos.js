@@ -1,4 +1,22 @@
 
+const btn_img_uploader = document.querySelector('#btm_img-uploader')
+btn_img_uploader.addEventListener('click',(e)=>{
+    e.preventDefault()
+    img_uploader.click()
+})
+
+
+const img_uploader = document.querySelector('#img-uploader')
+img_uploader.addEventListener('change', async (e)=>{
+    loader_toggle()
+    const file = e.target.files[0];
+    await upload_cloudimary(file)
+    renderMiniatura()
+    loader_toggle()
+})
+
+
+
 //agregar gregandoi nuevo producto
 const add = document.querySelector('#add')
 
@@ -24,7 +42,6 @@ add.addEventListener('click', (event) => {
         url: '/productos/',
         data: dato
     }).then(resp => {
-        $('.modal').modal('hide')
         const formulario = document.querySelector('#form')
         formulario.reset()
         location.reload()

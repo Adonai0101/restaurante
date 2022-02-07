@@ -1,4 +1,4 @@
-const btn_comprar =  document.querySelector('#btn_comprar')
+ const btn_comprar =  document.querySelector('#btn_comprar')
 
 
 btn_comprar.addEventListener('click',async ()=>{

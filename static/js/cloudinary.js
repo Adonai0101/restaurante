@@ -13,6 +13,38 @@ const CLOUDINARY_UPLOAD_PRESET = 'xn5pdxm9';
 var fotos = []
 var fotos_publicID = []
 
+
+
+/* Funcion definitiva para  siempre subir fotos con ella y no andar haciendo chingaderas*/
+function upload_cloudimary(file) {
+    // el file tiene que ir como parametro en la funcion
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    return axios({
+        method: "post",
+        url: CLOUDINARY_URL,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+    })
+        .then(function (response) {
+            //handle success
+            console.log(response);
+            //guardamos los valores en los arreglos
+            fotos.push(response.data.secure_url)
+            fotos_publicID.push(response.data.public_id)
+        })
+        .catch(function (response) {
+            //handle error
+            console.log(response);
+        });
+
+}
+
+
+
+/*
 imageUploader.addEventListener('change', async (e) => {
     // console.log(e);
     const file = e.target.files[0];
@@ -65,13 +97,14 @@ imageUploader.addEventListener('change', async (e) => {
     }
 
 });
+*/
 
 
 function renderMiniatura() {
     miniatura.innerHTML = ''
     fotos.forEach(element => {
         miniatura.innerHTML += `
-         <img class="m-1" style="width: 100px;" src="${element}">
+         <img src="${element}">
         `
     });
 }
@@ -81,6 +114,8 @@ function renderMiniatura() {
 
 
 //para la foto de perfil
+
+/*
 
 const perfil_uploader = document.getElementById('user_file')
 const foto_perfil = document.getElementById('foto_perfil')
@@ -139,3 +174,5 @@ perfil_uploader.addEventListener('change', async (e) => {
     })
 
 })
+
+*/

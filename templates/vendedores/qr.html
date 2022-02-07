@@ -1,0 +1,43 @@
+{% extends 'vendedores/base.html' %}
+
+{% block contenido %}
+<h1>Codigo QR</h1>
+<hr class="separador">
+
+<div>
+    <div class="col-2-break">
+        <div>
+            <div class="container">
+                <h4 class="text-center">Codigo QR para menu digital</h4>
+                <div class="container">
+                    <div id="qrcode_menu" style="width:250px; height:250px; margin-top:15px; margin-bottom: 15px;"></div>
+                </div>
+                <p id="menu_url">Tambien puedes compartir el enlace</p>
+                <a id="link_menu" href="https://menuzapotlan.club/menu/{{id}}" style = "color: steelblue;" >Ir a menu</a>
+                <button id="btn_qr" class="btn btn-dark mt-3 w-100">imprimir codigo QR</button>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <h4 class="text-center">Codigo QR para oedidos en linea</h4>
+                <div class="container">
+                    <div id="qrcode_pedido" style="width:250px; height:250px; margin-top:15px; margin-bottom: 15px;"></div>
+                </div>
+                <p id="menu_url">Tambien puedes compartir el enlace</p>
+                <a id="link_pedido" href="https://menuzapotlan.club/panel/restaurante/{{id}}" style = "color: steelblue;" >Pedidos en linea</a>
+                <button id="btn_qrLink" class="btn btn-dark mt-3 w-100">imprimir codigo QR</button>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock contenido %}
+
+{% block scripts %}
+<!--codigo qr-->
+<script src="{{url_for('static', filename = 'js/qrcode.min.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/qr.js')}}"></script>
+
+{% endblock scripts %}

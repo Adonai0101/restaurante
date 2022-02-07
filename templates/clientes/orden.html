@@ -1,73 +1,75 @@
 {% extends 'clientes/base.html' %}
 
 {% block contenido %}
-    <!--alert-->
-    <div class="alert done hide">
-        <i class='bx bx-check-circle alert-icon'></i>
-        <p>Nuevo domicilio</p>
-    </div>
+<div class="container">
+        <!--alert-->
+        <div class="alert done hide">
+            <i class='bx bx-check-circle alert-icon'></i>
+            <p>Nuevo domicilio</p>
+        </div>
+        
+        <!--modal-->
+        <div class="modal ">
+            <div class="modal_cont">
+                <div class="modal_band">
+                  <button onclick="modal_show()" class="btn modal_close"><i class='bx bx-x'></i></button>
+                </div>
+                <div class="modal_contenido">
+                    <h3>Agrega una nueva dirección</h3>
+                    <hr class="separador">
     
-    <!--modal-->
-    <div class="modal ">
-        <div class="modal_cont">
-            <div class="modal_band">
-              <button onclick="modal_show()" class="btn modal_close"><i class='bx bx-x'></i></button>
+                    <div>
+                        <form>
+                            <label>Domicilio</label>
+                            <input id="new_dom"  name = "domicilio" class="input-tex mb" type="text">
+                            <small class="mb">domicilio , numero y coloni</small>
+                            <button id="btn-dom-modal" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+                
             </div>
-            <div class="modal_contenido">
-                <h3>Agrega una nueva dirección</h3>
-                <hr class="separador">
-
+           
+        </div>
+        
+        <div class="shadow mb bg-ligth">
+            <h3>Datos de entrega</h3>
+    
+            <div >
+                <p >Domicilio:<span id="domicilio"> {{cliente['domicilio']}}</span> </p>
+                
+                <p>Telefono: {{cliente['telefono']}}</p>
+            </div>
+            <button onclick="modal_show()" style="color:steelblue" class="btn">usar otra direccion</button>
+        </div>
+    
+        <div class="shadow mb">
+            <form>
+                <label>Agrega una nota para el vendedor</label>
+                <textarea id="nota" class="input-tex mb" name="" ></textarea>
+            </form>
+        </div>
+    
+        <div id="cont-producto" class="shadow mb">
+            <h3>producto</h3>
+            <hr class="separador">
+            <div class="h-card">
+                <img src="{{producto.fotos[0]}}" alt="">
                 <div>
-                    <form>
-                        <label>Domicilio</label>
-                        <input id="new_dom"  name = "domicilio" class="input-tex mb" type="text">
-                        <small class="mb">domicilio , numero y coloni</small>
-                        <button id="btn-dom-modal" class="btn btn-primary">Agregar</button>
-                    </form>
+                    <p>Producto: {{producto['nombre']}}</p>
+                    <p>Cantidad: {{costos['cantidad']}}</p>
+                    <h4>Precio: {{costos['precio']}}</h4>
+                    <h5>Costo envio ${{costos['precio_envio']}}</h5>
                 </div>
             </div>
-            
         </div>
-       
-    </div>
     
-    <div class="shadow mb bg-ligth">
-        <h3>Datos de entrega</h3>
-
-        <div >
-            <p >Domicilio:<span id="domicilio"> {{cliente['domicilio']}}</span> </p>
-            
-            <p>Telefono: {{cliente['telefono']}}</p>
+        <div class="mb">
+            <h3>Total ${{costos['total']}}</h3>
         </div>
-        <button onclick="modal_show()" style="color:steelblue" class="btn">usar otra direccion</button>
-    </div>
-
-    <div class="shadow mb">
-        <form>
-            <label>Agrega una nota para el vendedor</label>
-            <textarea id="nota" class="input-tex mb" name="" ></textarea>
-        </form>
-    </div>
-
-    <div id="cont-producto" class="shadow mb">
-        <h3>producto</h3>
-        <hr class="separador">
-        <div class="h-card">
-            <img src="{{producto.fotos[0]}}" alt="">
-            <div>
-                <p>Producto: {{producto['nombre']}}</p>
-                <p>Cantidad: {{costos['cantidad']}}</p>
-                <h4>Precio: {{costos['precio']}}</h4>
-                <h5>Costo envio ${{costos['precio_envio']}}</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb">
-        <h3>Total ${{costos['total']}}</h3>
-    </div>
-
-    <button id="btn_pagar" class="btn btn-primary">Confirmar Compra</button>
+    
+        <button id="btn_pagar" class="btn btn-primary">Confirmar Compra</button>
+</div>
 {% endblock contenido %}
 
 {% block scripts %}

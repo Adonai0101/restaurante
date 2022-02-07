@@ -28,7 +28,8 @@ def index():
                 }
                 categoria_temp.append(x['categoria'])
                 categorias.append(temp)
-        return render_template('dashboard.html',usuario = usuario, categorias = categorias)
+        #return render_template('dashboard.html',usuario = usuario, categorias = categorias)
+        return render_template('/vendedores/dashboard.html',usuario = usuario, categorias = categorias)
     else:
         return redirect('/usuarios/login')
 
@@ -56,7 +57,8 @@ def categorias(categoria):
                 'user_id':i['user_id']
             }
             dato.append(temp)
-        return render_template('categorias.html',items = dato, categoria = categoria)
+        #return render_template('categorias.html',items = dato, categoria = categoria)
+        return render_template('/vendedores/productos_categoria.html',items = dato, categoria = categoria)
     else:
         return redirect('/usuarios/login')
 
@@ -66,7 +68,8 @@ def producto(id):
     if 'usuario' in session:
 
         producto = mongo.db.productos.find_one({'_id':ObjectId(id)})
-        return render_template('producto.html',producto = producto)
+        #return render_template('producto.html',producto = producto)
+        return render_template('/vendedores/producto.html',producto = producto)
     else:
         return redirect('/usuarios/login')
 
@@ -139,6 +142,26 @@ def done_pedido(id):
     else:
         return redirect('/usuarios/login')
 
+
+
+@dashboard.route('/perfil')
+def show_perfil():
+    if 'usuario' in session:
+        id = session['usuario']
+        vendedor = mongo.db.usuarios.find_one({'_id':ObjectId(id)})
+        return render_template('/vendedores/perfil.html', vendedor = vendedor)
+    else:
+        return redirect('/usuarios/login')
+
+
+@dashboard.route('/qr')
+def show_qr():
+    if 'usuario' in session:
+        id = session['usuario']
+        
+        return render_template('/vendedores/qr.html',id = id)
+    else:
+        return redirect('/usuarios/login')
 
 @dashboard.route('/get/vendedor')
 def get_vendedor():

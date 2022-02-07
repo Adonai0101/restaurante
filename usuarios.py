@@ -80,7 +80,16 @@ def registrar_usuario():
         'foto_key':'',
         'facebook' : '',
         'instagram' : '',
-        'tiktok' : ''
+        'tiktok' : '',
+        'horario': {
+            'Lunes':["",""],
+            'Martes':["",""],
+            'Miercoles':["",""],
+            'Jueves':["",""],
+            'Viernes':["",""],
+            'Sabado':["",""],
+            'Domingo':["",""],
+        }
     }
 
     #Validacion de campos vacios
@@ -197,7 +206,7 @@ def user_update():
             'tiktok': usuario['tiktok']
       }}
     )
-    return redirect('/dashboard')
+    return redirect('/dashboard/perfil')
 
 
 #formularios para mostrar y validar el correo
@@ -284,3 +293,32 @@ def cambiar_password_post():
         flash(msj)
         
         return redirect('/usuarios/updatepassword')
+
+
+@usuarios.route('/update/horario',methods = ['POST'])
+def update_horario():
+    if 'usuario' in session:
+        horario = {
+            'Lunes':request.json['Lunes'],
+            'Martes':request.json['Martes'],
+            'Miercoles':request.json['Miercoles'],
+            'Jueves':request.json['Jueves'],
+            'Viernes':request.json['Viernes'],
+            'Sabado':request.json['Sabado'],
+            'Domingo':request.json['Domingo'],
+        }
+
+        id = session['usuario']
+
+        mongo.db.usuarios.update_one(
+            {
+                '_id': ObjectId(id)
+            },
+            {
+                '$set':{
+                    'horario':horario
+            }}
+        )
+        return "chingas a tu perra madre"
+    else:
+        return "logeate primero prro"

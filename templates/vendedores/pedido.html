@@ -3,39 +3,41 @@
 {% block contenido %}
     <h1>Pedido</h1>
     <hr class="separador">
-    <div class="card mb">
-        <img class="card-img" src="{{pedido['foto_producto']}}" alt="">
-        <div class="card-body mb">
-            <h4>{{pedido['nombre_producto']}} ({{pedido['categoria_producto']}})</h4>
-            <p>Cantidad: {{pedido['cantidad_producto']}}</p>
-            <p class="mt mb">Nota: {{pedido['nota']}}</p>
-            <p>Total: ${{pedido['total']}}</p>
-
-            {% if pedido['estado_compra'] == 'pendiente' %}
-                <p class="pendiente">{{pedido['estado_compra']}}</p>
-            {% else %}
-                <p class="hecho">{{pedido['estado_compra']}}</p>
-            {% endif %}
-            
-            
-            <div class="mt">
-
+    <div class="container">
+        <div class="card mb">
+            <img class="card-img" src="{{pedido['foto_producto']}}" alt="">
+            <div class="card-body mb">
+                <h4>{{pedido['nombre_producto']}} ({{pedido['categoria_producto']}})</h4>
+                <p>Cantidad: {{pedido['cantidad_producto']}}</p>
+                <p class="mt mb">Nota: {{pedido['nota']}}</p>
+                <p>Total: ${{pedido['total']}}</p>
+    
                 {% if pedido['estado_compra'] == 'pendiente' %}
-                    <a href="/dashboard/pedido/done/{{pedido['_id']}}" class="btn btn-primary mb">Terminar pedido</a>
+                    <p class="pendiente">{{pedido['estado_compra']}}</p>
                 {% else %}
-                    <a href="/dashboard/pedidos" class="btn btn-secondary mb">Ir a pedido</a>
+                    <p class="hecho">{{pedido['estado_compra']}}</p>
                 {% endif %}
                 
+                
+                <div class="mt">
+    
+                    {% if pedido['estado_compra'] == 'pendiente' %}
+                        <a href="/dashboard/pedido/done/{{pedido['_id']}}" class="btn btn-primary mb">Terminar pedido</a>
+                    {% else %}
+                        <a href="/dashboard/pedidos" class="btn btn-secondary mb">Ir a pedido</a>
+                    {% endif %}
+                    
+                </div>
             </div>
-        </div>
-    </div> 
-
-    <div class="card">
-        <div class="card-body">
-            <h4 class="mb">Datos del cliente</h4>
-            <p>Nombre: {{pedido['nombre_cliente']}}</p>
-            <p>Telefono: {{pedido['telefono_cliente']}}</p>
-            <p>Domicilio: {{pedido['domicilio_cliente']}}</p>
+        </div> 
+    
+        <div class="card">
+            <div class="card-body">
+                <h4 class="mb">Datos del cliente</h4>
+                <p>Nombre: {{pedido['nombre_cliente']}}</p>
+                <p>Telefono: {{pedido['telefono_cliente']}}</p>
+                <p>Domicilio: {{pedido['domicilio_cliente']}}</p>
+            </div>
         </div>
     </div>
 {% endblock contenido %}

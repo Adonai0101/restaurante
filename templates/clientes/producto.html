@@ -2,52 +2,62 @@
 
 {% block contenido %}
 
-<div class="contenedor">
+<div class="container">
+    <div class="contenedor">
 
-    <div class="slider scroll-x mb">
-        {% for x in producto.fotos %}
-
-        <img src="{{x}}" alt="">
-        {% endfor %}
-
+        <div class="slider scroll-x mb">
+            {% for x in producto.fotos %}
+                <img src="{{x}}" alt="">
+            {% endfor %}
+        </div>
+    
+        <div class="data-producto mb">
+            <small>Vendedor: {{vendedor['nombre']}}</small>
+            <h1>{{producto['nombre']}}</h1>
+            <p>{{producto['categoria']}}</p>
+            <h2>$ {{producto['precio']}}</h2>
+        </div>
+    
+        <div class="cantidad mb">
+            <label for="cantidad">Cantidad: </label>
+    
+            <select  class="selector" name="cantidad" id="cantidad">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+        </div>
+    
+        <div class="descripcion mb">
+            <p>{{producto['ingredientes']}}</p>
+        </div>
+    
+        <div class="mb">
+            {% if bandera %}
+                abierto
+                <button id="btn_comprar" class="btn btn-primary mb">Comprar</button>
+            {% else %}
+                cerrado
+                <div class="flag flag-danger">
+                    <p>por el momento el restaurante se encuentra cerrado, intenta mas tarde</p>
+                    <p></p>
+                </div>
+            {% endif %}
+            
+            <!--
+                agregaremos este boton en el futuro
+            <button id="btn_agregar" class="btn btn-secondary mb">Agregar a la cesta</button>
+            -->
+        </div>
+    
     </div>
-
-    <div class="data-producto mb">
-        <h1>{{producto['nombre']}}</h1>
-        <p>{{producto['categoria']}}</p>
-        <h2>$ {{producto['precio']}}</h2>
-    </div>
-
-    <div class="cantidad mb">
-        <label for="cantidad">Cantidad: </label>
-
-        <select  class="selector" name="cantidad" id="cantidad">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-    </div>
-
-    <div class="descripcion mb">
-        <p>{{producto['ingredientes']}}</p>
-    </div>
-
-    <div class="mb">
-        <button id="btn_comprar" class="btn btn-primary mb">Comprar</button>
-        
-        <!--
-            agregaremos este boton en el futuro
-        <button id="btn_agregar" class="btn btn-secondary mb">Agregar a la cesta</button>
-        -->
-    </div>
-
 </div>
 
 

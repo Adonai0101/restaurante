@@ -1,0 +1,100 @@
+{% extends 'vendedores/base.html' %}
+
+{% block contenido %}
+<h1>{{categoria}}</h1>
+<hr class="separador">
+
+<!--modal-->
+<div class="modal ">
+    <div class="modal_cont">
+        <div class="modal_band">
+            <button onclick="modal_show()" class="btn modal_close"><i class='bx bx-x'></i></button>
+        </div>
+        <div class="modal_contenido">
+            <h4>Agrega un nuevo producto</h4>
+            <hr class="separador">
+
+            <div class="cont-loader">
+                <div class="loader">
+                    <!--spiner como loader-->
+                    <div class="spinner"></div>
+                </div>
+
+
+                <form id="form">
+                    <input placeholder="Nombre" id="nombre" name="nombre" class="input-tex mb" type="text">
+                    <input value="{{categoria}}" disabled id="categoria" name="nombre" class="input-tex mb" type="text">
+                    <input placeholder="Precio" id="precio" name="nombre" class="input-tex mb" type="text">
+                    <input placeholder="Descripción" id="ingredientes" name="nombre" class="input-tex mb" type="text">
+                </form>
+
+                <!-- div pàra subir fotos-->
+                <div class="border mt mb p-1">
+                    <div class="miniatura mb" id="miniatura">
+                        <!--Esperando fotos de js-->
+                        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+                        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+                        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+                        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+
+
+                    </div>
+                    <input hidden type="file" id="img-uploader">
+                    <button class="btn btn-dark" id="btm_img-uploader">Subir foto</button>
+                </div>
+
+                <button id="add" class="btn btn-primary">Agregar producto</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="col-flex">
+    <div onclick="modal_show()" class="card pointer" style="min-width: 250px;">
+        <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
+        <p class="card-title">Nueva categoria</p>
+    </div>
+
+    {% for i in items %}
+    
+    <div class="card" style="min-width: 250px;">
+        <!--btn para la card-->
+        <div class="card-btn" onclick="btn_card_toggle('id_{{loop.index}}')">
+            <i class='bx bx-menu-alt-right'></i>
+        </div>
+        <div id="id_{{loop.index}}" class="card-menu">
+            <ul>
+                <a href="/dashboard/producto/{{i.id}}" style="color: black;"><li><i class='bx bxs-edit' ></i> Editar</li></a>
+                <li onclick=" deleteOne('{{i.id}}')" ><i class='bx bx-comment-x' ></i> Eliminar</li>
+            </ul>
+        </div>
+        <img class="card-img" src="{{ i.fotos[0]}}" alt="">
+        <p class="card-title">{{i['nombre']}}</p>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+{% endblock contenido %}
+
+
+{% block scripts %}
+<!--Axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--sweet arlert-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!--subida de imagenes-->
+<script src="{{url_for('static', filename = 'js/cloudinary.js')}}"></script>
+<script src="{{url_for('static', filename = 'js/productos.js')}}"></script>
+
+{% endblock scripts %}

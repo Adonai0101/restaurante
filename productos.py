@@ -56,7 +56,8 @@ def delete_product():
       'id':request.json['id']
    }
    id = dato['id']
-
+   print(id)
+  
    #Eliminamos todos los registros de las imagenes
    producto = mongo.db.productos.find_one({'_id': ObjectId(id)})
 
@@ -65,12 +66,9 @@ def delete_product():
    for key in keys:
       destroy_image(key)
    
-
    #Eliminamos el registro
-   
    mongo.db.productos.delete_one({'_id': ObjectId(id)})
-   #response = jsonify({'message': 'Producto ' + id + ' Deleted Successfully'})
-   #return response
+   
    return "works"
    
 

@@ -1,30 +1,49 @@
-// Genera el objeto qrcode
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-    width : 200,
-    height : 200
+const qr_menu = document.querySelector('#qrcode_menu')
+const link_menu = document.querySelector('#link_menu')
+var qrcode_menu = new QRCode(qr_menu, {
+    width : 250,
+    height : 250
 });
 
 
-const user_id =  document.getElementById('user_id').value
-const menu_url = document.getElementById('menu_url')
+qrcode_menu.makeCode(link_menu.href);
 
 
-var URLactual = window.location;
-var codigo = URLactual.origin + "/menu/" + user_id
+const qr_pedido = document.querySelector('#qrcode_pedido')
+const link_pedido = document.querySelector('#link_pedido')
+var qrcode_pedido = new QRCode(qr_pedido, {
+    width : 250,
+    height : 250
+});
 
-menu_url.innerHTML = codigo
+qrcode_pedido.makeCode(link_pedido.href);
 
-qrcode.makeCode(codigo);
 
-//agregando la url al 'ver menu' del formulario
-document.getElementById("ver_menu").href = codigo;
+
+
+
 
 
 // para imprimir el codigo qr
 const btn = document.getElementById('btn_qr')
 
 btn.addEventListener('click',function(){
-    var ficha = document.getElementById('qrcode');
+	console.log('hey')
+    var ficha = document.querySelector('#qrcode_menu');
+	var ventimp = window.open(' ', 'popimpr');
+	ventimp.document.write( ficha.innerHTML );
+	ventimp.document.close();
+	ventimp.print( );
+	ventimp.close();
+})
+
+
+
+const btn_link = document.getElementById('btn_qrLink')
+
+btn_link.addEventListener('click',function(){
+	console.log('hey')
+    var ficha =  document.querySelector('#qrcode_pedido');
 	var ventimp = window.open(' ', 'popimpr');
 	ventimp.document.write( ficha.innerHTML );
 	ventimp.document.close();
