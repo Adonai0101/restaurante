@@ -127,8 +127,8 @@ def login_post():
 @clientes.route('/logout')
 def logout_cliente():
     session.pop("cliente",None)
-    return redirect('/clientes/login')
-
+    #return redirect('/clientes/login')
+    return redirect('/')
 
 
 # ::::::::::::::::: Recuperacion de correo contraseña :::::::::::::::::::::::

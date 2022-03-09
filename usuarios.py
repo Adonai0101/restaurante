@@ -58,7 +58,8 @@ def logout():
     session.pop("usuario",None)
     session.pop("vendedor",None)
     session.pop("cliente",None)
-    return redirect('/usuarios/login')
+    #return redirect('/usuarios/login')
+    return redirect('/menu')
 
 # Registro de usuarios
 @usuarios.route('/registro')

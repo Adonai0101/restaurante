@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--favicon-->
+    <link rel="icon" href="{{url_for('static', filename = 'img/favicon.png')}}" type="image/png" />
+    <!--icons box-icons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!--my styles-->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/styles.css')}}">
+    <title>Menu zapotlán</title>
+</head>
+
+<body class="fondo1">
+    <nav class="nav nav-bar">
+        <div class="nav-title">
+            <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30">
+            <h1>menu zapotlán</h1>
+        </div>
+
+        <div class="">
+            <ul class="nav-list">
+
+                <a href="/usuarios/login">
+                    <li class="btn" style="color: white;">Iniciar sesion</li>
+                </a>
+
+                <a href="/usuarios/registro">
+                    <li class="btn btn-primary">Prueba gratis</li>
+                </a>
+
+            </ul>
+        </div>
+
+        <div class="btn-hiden">
+            <button onclick="sidebar_toggle()" class="nav-btn">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="sidebar-fixed">
+
+        <div>
+            <a class="link-btn" href="/usuarios/login"> Inicia sessión</a>
+        
+        </div>
+    </div>
+
+    <!--contenido de laa shit-->
+    <div class="hero">
+        <div class="hero_picture order">
+            <img class="hero_img" src="{{url_for('static', filename = 'img/f1.svg')}}" alt="">
+        </div>
+
+        <div class="hero_texts">
+            <h1 class="hero_title">Pedidos en linea facil y rapido</h1>
+            <p class="hero_p">
+                Registra tus productos, nosotros nos encargamos del resto
+            </p>
+            <a class="hero_cta btn btn-primary" href="/usuarios/registro"> Pruebalo gratis </a>
+        </div>
+    </div>
+
+
+
+    <div class="hero ">
+        <div class="hero_picture">
+            <img class="hero_img" src="{{url_for('static', filename = 'img/f2.svg')}}" alt="">
+        </div>
+
+        <div class="hero_texts">
+            <h1 class="hero_title">¿Qué es menú zapotlán?</h1>
+            <p class="hero_p">
+                Es una herramienta perfecta para Restaurantes, Cafés y Hoteles,
+                el cliente ve el Menú de tu negocio en su celular y puede ordenar.
+                No se necesita descargar una aplicación, solo apuntas la cámara de
+                tu celular a un código QR y el Menú aparece, en una forma sencilla,
+            </p>
+        </div>
+    </div>
+
+
+    <div class="hero ">
+        <div class="hero_picture order">
+            <img class="hero_img" src="{{url_for('static', filename = 'img/f3.svg')}}" alt="">
+        </div>
+
+        <div class="hero_texts">
+            <h1 class="hero_title">¿Cómo puedo integrar Menu Zapotlan en mi negocio?</h1>
+
+            <ul class="hero_p">
+                <li class="hero_p">
+                    <i class='bx bxs-user-account icon_menu'></i>
+                    1.Registrate
+                </li>
+                <li class="hero_p">
+                    <i class='bx bxs-keyboard icon_menu'></i>
+                    2.Registra tus productos
+                </li>
+                <li class="hero_p">
+                    <i class='bx bx-qr icon_menu'></i>
+                    3.Comparte tu codigo QR
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <div class="bg-black footer-index top">
+        <h1 class="text-center">Pruebalo gratis por 30 días</h1>
+        <a class="btn btn-primary" href="/usuarios/registro">Empezar prueba</a>
+    </div>
+
+
+
+</body>
+
+<script src="{{url_for('static', filename = 'js/styles.js')}}"></script>
+
+</html>

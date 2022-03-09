@@ -53,7 +53,7 @@
 
     <div class="col-flex">
 
-        <div onclick="modal_show()"  class="card pointer" style="min-width: 250px;">
+        <div onclick="modal_show()"  class="card pointer" style="min-width: 250px; width: 10rem;">
             <img class="card-img" src="{{ url_for('static' , filename = 'img/add.png') }}" alt="">
             <p class="card-title">Nueva categoria</p>
         </div>
@@ -61,7 +61,7 @@
         {% for i in categorias %}
 
             <a href="/dashboard/{{i['categoria']}}">
-                <div class="card" style="min-width: 250px;">
+                <div class="card" style="min-width: 250px; width: 10rem;">
                     <img class="card-img" src="{{ i.foto[0]}}" alt="">
                     <p class="card-title">{{i['categoria']}}</p>
                 </div>

@@ -30,3 +30,8 @@ function sidebar_get_vendedor(){
         console.log(e)
     })
 }
+
+/*para saber el tamaño de un elementio 
+const x = document.querySelector('.foto-perfil')
+console.log(x.clientHeight)
+*/

@@ -1,0 +1,55 @@
+{% extends 'menu/base.html' %}
+
+{% block contenido %}
+
+
+<div class="slider scroll-x mb">
+    {% for x in producto.fotos %}
+        <img src="{{x}}" alt="">
+    {% endfor %}
+</div>
+
+<div class="data-producto mb">
+    <h1>{{producto['nombre']}}</h1>
+    <p>{{producto['categoria']}}</p>
+    <p>{{producto['ingredientes']}}</p>
+    <h2>$ {{producto['precio']}}</h2>
+</div>
+
+
+
+
+
+<footer id="footer" class="footer">
+
+    <h4 class="text-center">Mantente en contacto cón nosotros</h4>
+    <hr>
+
+    <div class="col-flex">
+        <a href="{{usuario.instagram}}" target="_blank" class="" >
+            <i class='bx bxl-instagram color-insta' ></i>
+        </a>
+
+        <a href="{{usuario.facebook}}" target="_blank">
+            <i class='bx bxl-facebook-circle color-face'></i>
+        </a>
+
+        <a href="{{usuario.tiktok}}" target="_blank" class="red_btn tik">
+            <i class='bx bxl-tiktok' ></i>
+        </a>
+    </div>
+
+    <div class="col-flex">
+        <p class="h5">
+            <i class='bx bxs-phone-call color-tel' ></i>
+            {{usuario.telefono}}
+        </p>
+
+        <p class="h5">
+            <i class='bx bx-map color-map' ></i>
+            {{usuario.domicilio}}
+        </p>
+    </div>
+
+</footer>
+{% endblock contenido %}

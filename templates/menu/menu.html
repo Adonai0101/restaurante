@@ -1,0 +1,73 @@
+{% extends 'menu/base.html' %}
+
+{% block contenido %}
+<div class="baner mb">
+    <img src="{{usuario['foto']}}" alt="??">
+</div>
+
+<h1>{{usuario['nombre']}}</h1>
+
+<hr class="separador">
+
+{% for x in categorias %}
+<div class="mb">
+    <h1 id="{{x}}" class="text-center text-white text-uppercase">{{x}}</h1>
+
+    <div class="col">
+
+        {% for i in items %}
+
+        {% if i['categoria'] == x %}
+
+        <a href="/menu/producto/{{i['id']}}">
+            <div class="card">
+                <img class="card-img" src="{{i.foto[0]}}" alt="">
+                <p class="card-title">{{i['nombre']}}</p>
+            </div>
+        </a>
+
+        {% endif %}
+
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+
+<footer id="footer" class="footer">
+
+    <h4 class="text-center">Mantente en contacto cón nosotros</h4>
+    <hr>
+
+    <div class="col-flex">
+        <a href="{{usuario.instagram}}" target="_blank" class="" >
+            <i class='bx bxl-instagram color-insta' ></i>
+        </a>
+
+        <a href="{{usuario.facebook}}" target="_blank">
+            <i class='bx bxl-facebook-circle color-face'></i>
+        </a>
+
+        <a href="{{usuario.tiktok}}" target="_blank" class="red_btn tik">
+            <i class='bx bxl-tiktok' ></i>
+        </a>
+    </div>
+
+    <div class="col-flex">
+        <p class="h5">
+            <i class='bx bxs-phone-call color-tel' ></i>
+            {{usuario.telefono}}
+        </p>
+
+        <p class="h5">
+            <i class='bx bx-map color-map' ></i>
+            {{usuario.domicilio}}
+        </p>
+    </div>
+
+</footer>
+
+
+
+
+{% endblock contenido %}

@@ -38,7 +38,6 @@ function modal_show(){
 function sidebar_toggle(){
     const activar = document.querySelector('.sidebar-fixed')
     activar.classList.toggle('active')
-    console.log('puchado')
 }
 
 
@@ -46,8 +45,12 @@ const btn_sidebar = document.querySelector('.nav-btn')
 btn_sidebar.addEventListener('click',function(){
     const activar = document.querySelector('.sidebar')
     activar.classList.toggle('active')
-    console.log('puchado')
 })
+
+function active_sidebar(){
+    const activar = document.querySelector('.sidebar')
+    activar.classList.toggle('active')
+}
 
 
 

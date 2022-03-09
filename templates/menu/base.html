@@ -38,61 +38,37 @@
 
         <div class="sidebar">
             <div class="foto-perfil">
-                <img id="sidebar_img" src="" alt="foto perfil">
-                <p id="sidebar_name">Jesus Adonai</p>
+                <img id="sidebar_img" src="{{usuario.foto}}" alt="foto perfil">
+                <p id="sidebar_name">{{usuario.nombre}}</p>
+                
             </div>
             <hr>
 
             <div>
                 <ul class="menu scroll-y">
-                    <li>
-                        <a href="/panel">
-                            <i class='bx bx-home'></i>
-                            Inicio
-                        </a>
 
-                    </li>
+                    {% if categorias|length  == 0 %}
+                        <li>
+                            <a href="/menu/{{usuario._id}}">
+                                <i class='bx bx-arrow-to-left'></i>
+                                regresar
+                            </a>
+                        </li>
+                        
+                    {% endif %}
 
-                    <li>
-                        <a href="/panel/restaurantes">
-                            <i class='bx bx-restaurant'></i>
-                            Restaurantes
-                        </a>
-                    </li>
+                    {% for categoria in categorias  %}
+                        <li onclick="active_sidebar()">
+                            <a href="#{{categoria}}">{{categoria}}</a>
+                        </li>
+                    {% endfor %}
 
-                    <li>
-                        <a href="/panel/compras">
-                            <i class='bx bx-dish'></i>
-                            Compras
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/panel/perfil">
-                            <i class='bx bx-user'></i>
-                            Perfil
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://wa.me/message/O63CVCMHCMN6E1">
-                            <i class='bx bx-help-circle'></i>
-                            Ayuda
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/clientes/logout">
-                            <i class='bx bx-log-out'></i>
-                            Salir
-                        </a>
-                    </li>
                 </ul>
             </div>
 
         </div>
 
-        <div class="contenido-panel ">
+        <div class="contenido-panel cont-footer">
 
             {% block contenido %}
 
@@ -108,7 +84,7 @@
     <script src="{{url_for('static', filename = 'js/sidebar.js')}}"></script>
     <script>
         //armando la info del sidebar
-        sidebar_get_cliente();
+        //sidebar_get_cliente();
     </script>
 
     <script src="{{url_for('static', filename = 'js/styles.js')}}"></script>

@@ -1,3 +1,4 @@
+from itertools import product
 from flask import Blueprint,render_template,redirect,request,flash,session,url_for
 from database import mongo
 
@@ -19,10 +20,13 @@ def index():
             'foto':i['foto']
         }
         dato.append(temp)
-    return render_template('usuarios_menu.html', usuarios = dato)
-
+    #return render_template('usuarios_menu.html', usuarios = dato)
+    return render_template('/menu/index.html', usuarios = dato)
 @menu.route('/<string:id>')
 def menu_user(id):
+
+    #guardamos el id del vendedor para usarlo mas adelante (en el sidebar la verdad)
+    session['id_vendesor'] = id
 
     categorias = []
     dato = []
@@ -54,7 +58,10 @@ def menu_user(id):
     del usuario['password']
     del usuario['email']
 
-    return render_template('menu.html', items = dato, categorias = categorias, usuario = usuario)
+    #return render_template('menu.html', items = dato, categorias = categorias, usuario = usuario)
+    return render_template('/menu/menu.html', items = dato, categorias = categorias, usuario = usuario)
+
+
 
 @menu.route('/producto/<string:id>')
 def menu_producto(id):
@@ -66,4 +73,5 @@ def menu_producto(id):
     usuario = mongo.db.usuarios.find_one({'_id':ObjectId(producto['user_id'])})
     del usuario['password']
     del usuario['email']
-    return render_template('menu_producto.html',datos = producto, usuario = usuario)
+    #return render_template('menu_producto.html',datos = producto, usuario = usuario)
+    return render_template('/menu/producto.html',producto = producto, usuario = usuario)

@@ -17,6 +17,7 @@
 <body>
     <nav class="nav nav-bar">
         <div class="nav-title">
+            <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30">
             <h1>menu zapotlán</h1>
         </div>
 
@@ -26,7 +27,7 @@
                     <li>Empresa</li>
                 </a>
                 <a href="/clientes/login">
-                    <li>Iniciar sesion</li>
+                    <li>Iniciar sesión </li>
                 </a>
                 
                 <a href="/clientes/registro">
@@ -66,52 +67,28 @@
         </div>
     </div>
 
-    <div class="cont">
-        <div class="col-2-break">
-            <div class="mb container">
-                <div>
-                    <h2 class="mb">Ordena comida de restaurantes locales y recibe en minutos.</h2>
-                    <p class="mt">Somos la App de Entregas a Domicilio 100% de Zapotlán.
-                        Nos encanta la comida al igual que a ti y queremos que la disfrutes como si tu mismo fueras por ella. 
-                        Claro, desde la comodidad de tu hogar. Nosotros nos encargamos del resto.</p>
-                </div>
-            </div>
-            <img class="mt img-just" src="{{url_for('static', filename = 'img/lan-1.svg')}}"  alt="">
+    <div class="hero">
+        <div class="hero_picture order">
+            <img class="hero_img" src="{{url_for('static', filename = 'img/f4.svg')}}" alt="">
         </div>
 
+        <div class="hero_texts">
+            <h1 class="hero_title">Ordena comida de restaurantes locales y recibe en minutos.</h1>
 
-        <div class="col-2-break mt-100">
-            <img class="mt img-just" src="{{url_for('static', filename = 'img/lan-3.svg')}}"  alt="">
-
-            <div class="mb container">
-                <div>
-                    <h2 class="mb">Comienza a utilizar nuestra app </h2>
-                    <p class="mt mb">No necesitas descargar nada, puedes acceder a
-                         tu cuenta desde cualquier dispositivo solo haz <a class="haz-click" href="/clientes/registro">click aquí </a>
-                         y cambia la forma de ordenar comida a domicilio  </p>
-                    <a class="btn btn-dark mt" href="/clientes/login">Iniciar sesión  </a>
-                </div>
-            </div>
+            <p class="hero_p">
+                cambia la forma de ordenar comida a domicilio
+            </p>
+            <a class="hero_cta btn btn-dark w-100"  href="/clientes/login"> Iniciar sesión  </a>
+            <br><br>
+            <a class="haz-click" href="/menu">Registrar mi negocio</a>
+            
         </div>
-
-
-        <div class="col-2-break mt-100">
-            <div class="mb container">
-                <div>
-                    <h2 class="mb">¿Quieres vender tus productos en Menu Zapotlán?</h2>
-                    <p class="mt mb">Haz que tus clientes tengan una mejor experiencia y vende tus productos en toda la ciudad sin invertir en logística.</p>
-                    <a class="btn btn-dark mt" href="/usuarios/registro">Quiero empezar a vender </a>
-                </div>
-            </div>
-            <img class="mt img-just" src="{{url_for('static', filename = 'img/lan-2.svg')}}"  alt="">
-        </div>
-
-
-
     </div>
 
 
 
+
+    
   
 
 

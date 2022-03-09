@@ -3,9 +3,11 @@ from validate_email import validate_email
 
 import datetime
 
+
 def obtener_fecha():
     now = datetime.datetime.utcnow()
-    return now
+    format = now.strftime('%d/%m/%Y')
+    return format
 
 def proximo_pago(fecha):
     nueva_fecha = fecha + datetime.timedelta(days = 30)
