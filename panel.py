@@ -30,18 +30,22 @@ def index():
         #modulo de favoritos
         favoritos = []
         arg = []
-        res = mongo.db.compras.find({'id_cliente':id})
-        for i in res:
-            if i['id_producto'] in arg:
-                pass    # un iz filtro
-            else:
-                arg.append(i['id_producto'])
-                temp = {
-                    'id':i['id_producto'],
-                    'nombre':i['nombre_producto'],
-                    'foto':i['foto_producto']
-                }
-                favoritos.append(temp)
+        res = mongo.db.compras.find_one({'id_cliente':id})
+        if res: # validamos esta perra shit que exista un valor porq si no vale verga esto
+            res = res['productos']
+            
+            for i in res:
+                if i['id_producto'] in arg:
+                    pass    # un iz filtro
+                else:
+                    arg.append(i['id_producto'])
+                    temp = {
+                        'id':i['id_producto'],
+                        'nombre':i['nombre_producto'],
+                        'foto':i['foto_producto']
+                    }
+                    favoritos.append(temp)
+        
         favoritos = favoritos[0:5]
         return render_template('clientes/inicio.html', favoritos = favoritos)
     else:
@@ -168,20 +172,63 @@ def show_orden():
     else:
         return redirect('/clientes/login')
 
-#esta ruta sirve para poder guardar datos
-#y en el frontend redirijo a otro lado
+#en esta ruta generaremos la estructura de dato para ser guardada la compra
 @panel.route('/orden', methods = ['POST'])
 def post_orden():
-    data = {
-        'id_producto':request.json['id'],
-        'cantidad':request.json['cantidad']
+    #obtengo los valores del fontend
+    id_producto = request.json['id']
+    cantidad = request.json['cantidad']
+    
+    #genero mi item del producto
+    productos = []
+    producto = mongo.db.productos.find_one({'_id':ObjectId(id_producto)})
+    item = {
+        'id_producto':str(producto['_id']),
+        'nombre_producto':producto['nombre'],
+        'foto_producto':producto['fotos'][0],
+        'cantidad': int(cantidad),
+        'precio' : int(producto['precio']) * int(cantidad)
     }
-    session['orden'] = data
+    productos.append(item)
 
+    #obtenemos los datos del cliente
+    id_cliente = session['cliente']
+    cliente = mongo.db.clientes.find_one({'_id':ObjectId(id_cliente)})
+    
+    #obtenemos lod datos del vendedor
+    id_vendedor = producto['user_id']
+    vendedor = mongo.db.usuarios.find_one({'_id':ObjectId(id_vendedor)})
+    
+    total = int(config('COSTO_ENVIO')) + ( int(cantidad) * int(producto['precio']))
+
+    #armamos el pedido
+    paquete = {
+        'id_vendedor':str(vendedor['_id']),
+        'nombre_vendedor': vendedor['nombre'],
+        'telefono_vendedor':vendedor['telefono'],
+        'email_vendedor':vendedor['email'],
+        'productos':productos,
+        'total': total,
+        #datos del cliente
+        'id_cliente' : str(cliente['_id']),
+        'nombre_cliente' : cliente['nombre'],
+        'telefono_cliente' : cliente['telefono'],
+        'email_cliente' : cliente['email'],
+        'domicilio_cliente' : cliente['domicilio'],
+        'foto_cliente' : cliente['foto'],
+        'estado_compra' : 'pendiente',
+        'nota' : "",
+        'fecha' : obtener_fecha()
+    }
+
+    #guardamos el pedido/paquete en la variable de session 'session['orden_paquete']'
+    session['orden_paquete'] = paquete
+    
+    print('--------------finaliza compra rapida --------------')
     return 'works'
 
 
-@panel.route('/comprar', methods = ['POST'])
+@panel.route('/comprar', methods = ['POST']) #esta ruta es sospechosa a ser eliminada
 def post_comprar():
     if 'cliente' in session:
         
@@ -286,12 +333,28 @@ def show_pedidos():
         compras = []
         res =  mongo.db.compras.find({'id_cliente':id_cliente}).sort('fecha',-1)
         for i in res:
-            compras.append(i)
+            temp = {
+                'nombre_vendedor':i['nombre_vendedor'],
+                'estado':i['estado_compra'],
+                'fecha':i['fecha'],
+                'productos':i['productos'],
+                'total':i['total']
+            }
+            compras.append(temp)
         return render_template('/clientes/compras.html', compras =  compras)
     else:
         return redirect('/clientes/login')
 
 
+#ruta para la visualizacion del carrito
+@panel.route('/carrito')
+def show_carrito():
+    if 'cliente' in session:
+
+
+        return render_template('/clientes/carrito.html')
+    else:
+        return redirect('/clientes/login')
 
 
 

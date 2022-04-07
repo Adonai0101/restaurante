@@ -2,9 +2,14 @@
 
 {% block contenido %}
 
+        <!--alert-->
+        <div class="alert done hide">
+            <i class='bx bx-check-circle alert-icon'></i>
+            <p>Agregaste al carrito</p>
+        </div>
+
 <div class="container">
     <div class="contenedor">
-
         <div class="slider scroll-x mb">
             {% for x in producto.fotos %}
                 <img src="{{x}}" alt="">
@@ -41,20 +46,15 @@
     
         <div class="mb">
             {% if bandera %}
-                abierto
-                <button id="btn_comprar" class="btn btn-primary mb">Comprar</button>
+                <button id="btn_comprar" onclick="comprar_ahora('{{producto._id}}')" class="btn btn-primary mb">Comprar</button>
+                <button id="btn_agregar" onclick="agregar_carrito('{{producto.user_id}}','{{producto._id}}')" class="btn btn-secondary mb">Agregar al carrito</button>
             {% else %}
-                cerrado
                 <div class="flag flag-danger">
                     <p>por el momento el restaurante se encuentra cerrado, intenta mas tarde</p>
                     <p></p>
                 </div>
             {% endif %}
-            
-            <!--
-                agregaremos este boton en el futuro
-            <button id="btn_agregar" class="btn btn-secondary mb">Agregar a la cesta</button>
-            -->
+
         </div>
     
     </div>
@@ -69,4 +69,5 @@
 
 
         <script src="{{url_for('static', filename = 'js/pedidos.js')}}"></script>
+        <script src="{{url_for('static', filename = 'js/carrito.js')}}"></script>
 {% endblock scripts %}

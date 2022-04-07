@@ -1,19 +1,21 @@
 {% extends 'vendedores/base.html' %}
 
 {% block contenido %}
+
     <h1>Tus pedidos</h1>
     <hr class="separador">
-    
     <div class="col-flex">
         {% for i in pedidos %}
             {% if i['estado_compra'] == 'pendiente' %}
                 <div class="card" style="width: 15rem;">
-                    <img class="card-img" src="{{i['foto_producto']}}" alt="">
+                    <img class="card-img" src="{{i.foto_cliente}}" alt="">
                     <div class="card-body mb">
-                        <h4>{{i['nombre_producto']}} ({{i['categoria_producto']}})</h4>
-                        <p>Cantidad: {{i['cantidad_producto']}}</p>
-                        <p>Total: ${{i['total']}}</p>
-                        <p class="pendiente">{{i['estado_compra']}}</p>
+                        
+                        <h4>Cliente: {{i.nombre_cliente}}</h4>
+                        <p>NO. de productos: {{i.productos|length}}</p>
+                        <p>Total: ${{i.total}}</p>
+                        <p>Fecha: {{i.fecha}}</p>
+                        <p class="pendiente">{{i.estado_compra}}</p>
                         <div class="mt">
                             <a href="/dashboard/pedido/{{i['_id']}}" class="btn btn-primary mb">ver pedido</a>
                         </div>
@@ -31,20 +33,20 @@
     <div class="col-flex">
         {% for i in pedidos %}
         {% if i['estado_compra'] == 'hecho' %}
-            <div class="card" style="width: 15rem;">
-                <img class="card-img" src="{{i['foto_producto']}}" alt="">
-                <div class="card-body mb">
-                    <h4>{{i['nombre_producto']}} ({{i['categoria_producto']}})</h4>
-                    <p>Cantidad: {{i['cantidad_producto']}}</p>
-                    <p>Total: ${{i['total']}}</p>
-                    <p>Fecha: {{i['fecha']}}</p>
-                    <p class="hecho">{{i['estado_compra']}}</p>
-
-                    <div class="mt">
-                        <a href="/dashboard/pedido/{{i['_id']}}" class="btn btn-primary mb">ver pedido</a>
-                    </div>
+        <div class="card" style="width: 15rem;">
+            <img class="card-img" src="{{i.foto_cliente}}" alt="">
+            <div class="card-body mb">
+                
+                <h4>Cliente: {{i.nombre_cliente}}</h4>
+                <p>NO. de productos: {{i.productos|length}}</p>
+                <p>Total: ${{i.total}}</p>
+                <p>Fecha: {{i.fecha}}</p>
+                <p class="hecho">{{i.estado_compra}}</p>
+                <div class="mt">
+                    <a href="/dashboard/pedido/{{i['_id']}}" class="btn btn-primary mb">ver pedido</a>
                 </div>
             </div>
+        </div>  
         {% endif %}
 
         {% endfor %}

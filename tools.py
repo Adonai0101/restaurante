@@ -7,7 +7,7 @@ import datetime
 def obtener_fecha():
     now = datetime.datetime.utcnow()
     format = now.strftime('%d/%m/%Y')
-    return format
+    return now
 
 def proximo_pago(fecha):
     nueva_fecha = fecha + datetime.timedelta(days = 30)

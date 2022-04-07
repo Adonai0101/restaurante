@@ -2,9 +2,7 @@
 const btn_pagar = document.querySelector('#btn_pagar')
 btn_pagar.addEventListener('click', () => {
 
-
     const nota = document.querySelector('#nota')
-    console.log(nota.value)
 
     let datos = {
         'domicilio': domicilio,
@@ -12,24 +10,21 @@ btn_pagar.addEventListener('click', () => {
     }
 
     console.log(datos)
-    
-    //obtengo la pantalla de carga
-    pantalla = document.querySelector('.pantalla-carga')
-    pantalla.classList.toggle('show')
+    console.log('estoy aqui')
 
         axios({
             method: 'POST',
-            url: '/panel/comprar',
+            url: '/compra/',
             data: datos
         })
         .then(resp => {
+            console.log('terminamois de hacer el pedido alv')
             console.log(resp)
-
+            
         })
         .then(x => {
-            window.location.href = '/panel/compra/hecho';
+            window.location.href = '/panel/compra/hecho'
         })
-
 })
 
 

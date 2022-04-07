@@ -3,19 +3,38 @@
 {% block contenido %}
 <h1>Mis compras</h1>
 <hr class="separador mb">
-    <div class="container">    
-        {% for i in compras  %}
-            <div class="h-card mb">
-                <img src="{{i['foto_producto']}}" alt="">
-                <div>
-                    <p>{{i['nombre_producto']}}</p>
-                    <p class="mb"><small>{{i['nombre_vendedor']}}</small></p>
-                    <p>{{i['estado_compra']}}</p>
-                    <p>{{i['fecha']}}</p>
-                    
-                </div>
-            </div>
-        {% endfor %}
-    </div>
 
-{% endblock contenido %}<h1>estas en pedidos</h1>
+
+<div class="col-flex">
+    {% for i in compras %}
+        <div class="paquete mb">
+            <div class="paquete-header">
+                <p>Vendedor: <span>{{i['nombre_vendedor']}}</span></p>
+                <p>fecha: {{i['fecha']}}</p>
+            </div>
+            <div class="paquete_body ">
+                
+                {% for x in i['productos']  %}
+                    <div class="card" style="width: 10em;">
+                        <img class="card-img" src="{{x['foto_producto']}}" alt="">
+                        <p class="card-title">{{x['nombre_producto']}}</p>
+                    </div>
+                {% endfor %}
+
+        
+            </div>
+        
+            <div class="paquete_footer">
+                <p>Precio con envio: <span>$300</span></p>
+                <p>{{i['estado']}}</p>
+            </div>
+            
+        </div>  
+    {% endfor %}
+</div>
+    
+  
+
+
+
+{% endblock contenido %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--favicon-->
+    <link rel="icon" href="{{url_for('static', filename = 'img/favicon.png')}}" type="image/png" />
+    <!--icons box-icons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!--my styles-->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/styles.css')}}">
+    <title>Menu zapotlán</title>
+</head>
+
+<body>
+    <nav class="nav nav-bar">
+        <a href="/">
+            <div class="nav-title">
+                <img src="{{url_for('static', filename = 'img/favicon.png')}}" width="30" height="30">
+                <h1>menu zapotlán</h1>
+            </div>
+        </a>
+
+    </nav>
+    
+    <main class="top">
+        <h1 class="text-center mb">Términos y condiciones </h1>
+
+        <div class="tyc">
+            <img src="{{url_for('static', filename = 'img/general.svg')}}" alt="">
+            <div>
+                <h2>General</h2>
+                <ul>
+                    <li>Aceptas que usemos tu correo electrónico para notificarte de promociones y descuentos en nuestros servicios </li>
+                    <li>Usted se compromete a reportar cualquier tipo de fallo en el sistema </li>
+                    <li>Usted es completamente responsable del contenido que se muestra en su perfil. Si se encuentra contenido inadecuado suspenderemos la cuenta temporalmente o se hará una eliminación parcial del contenido de su perfil. En caso que el contenido sea más explícito (pornografía, violencia, maltrato animal, racismo) se eliminará la cuenta permanentemente y de ser necesario se notificará a las autoridades pertinentes </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tyc">
+            <img src="{{url_for('static', filename = 'img/vendedor.svg')}}" alt="">
+            <div>
+                <h2>Vendedor</h2>
+                <ul>
+                    <li>Usted se compromete a atender todos los pedidos que se generen en la plataforma, si se llegó la hora de cierre y aún quedaron pedidos por realizar usted se compromete a completarlos- </li>
+                    <li>Usted no puede negarle el servicio a ningún cliente que use la plataforma, si usted tiene alguna inconformidad con algún usuario notifíquenos y nosotros valoraremos si el usuario puede ser sancionado </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tyc">
+            <img src="{{url_for('static', filename = 'img/cliente.svg')}}" alt="">
+            <div>
+                <h2>Cliente</h2>
+                <ul>
+                    <li>Menú Zapotlán es un intermediario entre el restaurante y el comprador, Menú Zapotlán no se hace cargo de ningún problema que se pueda tener con los alimentos </li>
+                    <li>Usted se compromete a recibir todos los pedidos que usted realice dentro de la plataforma, si consideramos que tiene una conducta inadecuada en el uso de la plataforma nos veremos en la necesidad de eliminar su cuenta permanente mente, de ser así su domicilio, número de teléfono, y correo electrónico se agregarán a una lista negra y no podrán hacer uso de ninguno de nuestros servicios </li>
+                    <li>Para brindarle un servicio de excelencia usted se compromete a que toda su información sea correcta (teléfono, domicilio, etc.) </li>
+                </ul>
+            </div>
+        </div>
+    
+    
+    </main>
+
+    
+</body>
+
+<script src="{{url_for('static', filename = 'js/styles.js')}}"></script>
+
+</html>

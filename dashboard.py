@@ -128,7 +128,9 @@ def done_pedido(id):
             #obteniendo el email del cliente
             res =  mongo.db.compras.find_one({'_id':ObjectId(id)})
             print(res['email_cliente'])
+            
             #notificar al repartidor
+
             #notificar al usuario
             mail_vendedor = res['email_cliente']
             asunto = "Tu pedido esta en camino!!"

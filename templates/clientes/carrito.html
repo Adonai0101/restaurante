@@ -1,0 +1,64 @@
+{% extends 'clientes/base.html' %}
+
+{% block contenido %}
+
+<h1>Mi carrito</h1>
+<hr class="separador">
+
+<div class="main-container ">
+    <!--Este es un ejemplo de lo que se resivira desde js
+    <div class="paquete mb">
+        <div class="paquete-header">
+            <p>Vendedor: <span>Dulce Vida</span></p>
+        </div>
+        <div class="paquete_body ">
+    
+            <div class="h-card mb">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+                <div class="pd">
+                    <p>nombre de shitr</p>
+                    <p>Cantidad : 3</p>
+                    <P>Precio: $200</P>
+                    <button class="btn btn-secondary">Eliminar</button>
+                </div>
+            </div>
+    
+            <div class="h-card mb">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+                <div class="pd">
+                    <p>nombre de shitr</p>
+                    <p>Cantidad : 3</p>
+                    <P>Precio: $200</P>
+                    <button class="btn btn-secondary">Eliminar</button>
+                </div>
+            </div>
+    
+        </div>
+    
+        <div class="paquete_footer">
+            <p>Precio con envio: <span>$300</span></p>
+            <button class="btn btn-dark">Comprar pedido</button>
+        </div>
+        
+    </div>
+    -->
+
+</div>
+
+
+
+
+
+{% endblock contenido %}
+
+
+{% block scripts %}
+        <!--Axios-->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <script src="{{url_for('static', filename = 'js/carrito.js')}}"></script>
+        <script>
+            //render_paquete("621485e1b12f8c1d97b74268")
+            render_all()
+        </script>
+{% endblock scripts %}

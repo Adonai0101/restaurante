@@ -11,6 +11,8 @@ from menu import menu
 from master import master
 from clientes import clientes
 from panel import panel
+from carrito import carrito
+from compra import compra
 
 #Database
 from database import mongo
@@ -32,6 +34,8 @@ app.register_blueprint(master,url_prefix = '/master')
 
 app.register_blueprint(clientes,url_prefix = '/clientes')
 app.register_blueprint(panel,url_prefix = '/panel')
+app.register_blueprint(carrito,url_prefix = '/carrito')
+app.register_blueprint(compra,url_prefix = '/compra')
 
 @app.route('/')
 def index():
@@ -39,7 +43,7 @@ def index():
 
 @app.route('/terminoscondiciones')
 def terminos():
-    return render_template('terminos.html')
+    return render_template('/landingpage/tyc.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

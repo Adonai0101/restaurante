@@ -75,9 +75,6 @@ html{
 }
 
 
-
-
-
 .nav-btn{
     padding: .25rem .75rem;
     font-size: 2rem;
@@ -428,7 +425,6 @@ html{
     /*el width para el card depende de cada utilidad que se le de*/  
     border-radius: 10px;
     position: relative;
-    
 }
 
 .card-img{
@@ -1142,5 +1138,190 @@ hr{
     width: 50%;
 }
 
+
+.paquete{
+    border: solid 1px lightgrey;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.paquete-header{
+    padding: 5px;
+    border-bottom: solid 1px lightgray;
+}
+
+.paquete-header p{
+    font-size: 20px;
+}
+.paquete-header span{
+    font-weight: bold;
+}
+
+.paquete_body{
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.paquete_footer{
+    border-top: solid 1px lightgray;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.paquete_footer p{
+    font-size: 20px;
+}
+
+.paquete_footer span{
+    font-weight: bold;
+}
+
+.pd{
+    padding: 5px;
+}
+
+
+
+
+
+
+/*Layout para el carrito de compras*/
+/*este codigo esta proximo a moriri*/
+.cont-carrito{
+    width: 100%;
+    height: calc(100vh - 100px );
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrito-body{
+    padding: 10px;
+    overflow-y: scroll;
+
+}
+
+.carrito-footer{
+    border-radius: 5px;
+    background: #f2f2f2;
+    margin-top: auto;
+    padding: 20px;
+    box-shadow: 3px 3px black, -1em 0 0.4em black;
+    
+}
+
+
+
+/*items del carrito*/
+
+.card-x{
+    border-radius: 5px;
+    border: solid 1px black;
+    width: 20rem;
+}
+
+.card-x__img{
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.card-x__body{
+    padding: 5px;
+}
+
+
+.botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.botones button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-black);
+    border: none;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botones button i{
+    font-size: 25px;
+    color: white;
+}
+
+.botones label{
+    font-size: 20px;
+}
+
+
+.compra_productos{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+}
+
+@media (max-width: 580px) {
+    .compra_productos{
+        height: 150px;
+    }
+  }
+
+
+.tyc{
+    display: flex;
+    gap: 30px;
+
+    padding: 10px;
+    
+
+}
+
+
+.tyc img{
+    display: block;
+    width: 50%;
+    min-width: 400px;
+    margin: 0 auto;
+}
+.tyc div{
+    margin-top: 30px;
+    width: 50%;
+}
+
+.tyc h2{
+    margin-bottom: 20px;
+}
+
+.tyc ul li{
+    font-size: 20px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    list-style:disc;
+}
+
+@media (max-width: 800px) {
+    .tyc{
+        flex-direction: column ;
+    }
+
+    .tyc div{
+        margin-top: 1px;
+        width: 100%;
+    }
+  }
 
 
