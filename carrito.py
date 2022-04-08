@@ -22,6 +22,17 @@ import time
 
 carrito = Blueprint('carrito',__name__)
 
+"""
+Se asigna un nombre para generar un carrito dinamico
+nombre_carrito = 'carrito_' + id_vendedor
+
+guarda todods los datos de los productos segun un vendedor
+session[nombre_carrito]
+
+guarda una lista con los id's de los vendedores, esto significa que existe un carrito con ese nombre
+session['lista_carrito']
+"""
+
 @carrito.route('/')
 def index():
     paquetes = []
@@ -155,6 +166,29 @@ def get_one(id):
     return jsonify({'msj':'404'})
 
 
+#ruta para eliminar un solo item de un carrito en espesifico
+@carrito.route('/delete' , methods = ['POST'])
+def delete_one():
+
+    id_carrito = request.json['id_carrito']
+    id_producto = request.json['id_producto']
+    nombre_carrito = 'carrito_' + id_carrito
+
+    #eliminamos el producto del carrito
+    temp = session[nombre_carrito]
+    temp.pop(id_producto)
+
+    session[nombre_carrito] = temp
+
+    # ahora comprobamos si exiten valores en el carrrito
+    if len(temp) == 0:
+        #eliminamos el carrito dinamico de la lista de carritos
+        lista_temp = session['lista_carrito']
+        lista_temp.remove(id_carrito)
+        session['lista_carrito'] = lista_temp
+
+    
+    return "Eliminado"
 
 #ruta que regresa la lista con los nombres de los carritos dinamicos
 @carrito.route('/list')
@@ -185,7 +219,7 @@ def comprar():
     paquete['telefono_cliente'] = cliente['telefono']
     paquete['email_cliente']  = cliente['email']
     paquete['domicilio_cliente'] = cliente['domicilio']
-    paquete['foto_cliente'] = cliente['foto'] #agregue esta linea de shit
+    paquete['foto_cliente'] = cliente['foto'] 
     paquete['estado_compra'] = 'pendiente'
     paquete['nota'] = ""
     paquete['fecha'] = obtener_fecha()

@@ -46,6 +46,7 @@ function render_paquete(id){
     })
     .then(resp => {
         data = resp.data['paquete']
+        let id_carrito = id
         //console.log(data)
         console.log(data.productos)
         const item = data.productos[0]
@@ -66,7 +67,7 @@ function render_paquete(id){
                             <p>${val.nombre_producto}</p>
                             <p>Cantidad : ${val.cantidad}</p>
                             <P>Precio: $${val.precio}</P>
-                            <button class="btn btn-secondary">Eliminar</button>
+                            <button onclick="delete_item('${id_carrito}','${val.id_producto}')" class="btn btn-secondary">Eliminar</button>
                         </div>
                     </div>               
                 `).join('')}
@@ -100,10 +101,29 @@ function comprar(obj){
         //window.location.href = '/compra';
     })
     .then(a =>{
-        console.log('pelos we culo')
+        console.log('--')
         setTimeout(function(){
-            console.log("I am the third log after 5 seconds");
+            console.log("I am the third log after 1 seconds");
             window.location.href = '/compra';
         },1000);
     })
+}
+
+function delete_item(id_carrito,id_producto){
+    console.log("estamos en delete")
+
+    let item = {
+        'id_carrito':id_carrito,
+        'id_producto':id_producto
+    }
+    axios({
+        method: 'POST',
+        url: '/carrito/delete',
+        data: item
+    })
+    .then(resp => {
+        console.log(resp)
+        window.location.href = '/panel/carrito';
+    })
+
 }
