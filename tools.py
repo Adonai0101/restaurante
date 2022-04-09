@@ -1,6 +1,6 @@
 from tokenize import Double
 from validate_email import validate_email
-
+import random
 import datetime
 
 
@@ -39,9 +39,10 @@ def encriptar(cad):
 def desencriptar(cad):
     msj = ""
     for i in cad:
-        temp = ord(i) - 1
+        temp = ord(i) - 10
         msj  = msj + chr(temp)
     return msj 
+
 
 
 def dia_semana():
@@ -72,4 +73,11 @@ def convertir_hora(cad):
     hora = cad.replace(':', '.')
     hora = float(hora)
     return  hora
+
+def generar_codigo():
+    code = ""
+    for i in range(6):
+        code = code + str(random.randint(0,9))
+    return code 
+
 

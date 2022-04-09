@@ -146,7 +146,8 @@ def send_mail():
     if res:
         cliente = mongo.db.clientes.find_one({'email':mail})
         destino = cliente['email']
-        codigo = cliente['password']
+        codigo = generar_codigo()
+        session['password_code'] = codigo #guardamos en usa session para usarlo en una validacion
         enviar_email(destino,codigo)
 
         #guardamos el id en una session para utilizarlo y cambiar el password 
@@ -187,9 +188,9 @@ def restore_password_post():
     
     print('primer filtro fromted')
 
-    cliente = mongo.db.clientes.find_one({'_id':ObjectId(session['restore'])})
-    
-    if codigo == cliente['password']:
+    #cliente = mongo.db.clientes.find_one({'_id':ObjectId(session['restore'])})
+    password_code = session['password_code']
+    if codigo == password_code:
 
         id = session['restore']
 

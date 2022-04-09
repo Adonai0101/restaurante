@@ -231,7 +231,9 @@ def restaurar_password():
         usuario = mongo.db.usuarios.find_one({'email':mail})
         
         destino = usuario['email']
-        codigo = usuario['password']
+        codigo = generar_codigo()
+
+        session['password_code'] = codigo
         
         enviar_email(destino,codigo)
 
@@ -266,9 +268,9 @@ def cambiar_password_post():
         
         return redirect('/usuarios/updatepassword')
 
-    usuario = mongo.db.usuarios.find_one({'_id':ObjectId(session['restore'])})
-    
-    if codigo == usuario['password']:
+    #usuario = mongo.db.usuarios.find_one({'_id':ObjectId(session['restore'])})
+    password_code = session['password_code'] 
+    if codigo == password_code:
 
         id = session['restore']
 
