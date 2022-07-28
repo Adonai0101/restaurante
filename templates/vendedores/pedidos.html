@@ -5,6 +5,7 @@
     <h1>Tus pedidos</h1>
     <hr class="separador">
     <div class="col-flex">
+
         {% for i in pedidos %}
             {% if i['estado_compra'] == 'pendiente' %}
                 <div class="card" style="width: 15rem;">
@@ -17,7 +18,7 @@
                         <p>Fecha: {{i.fecha}}</p>
                         <p class="pendiente">{{i.estado_compra}}</p>
                         <div class="mt">
-                            <a href="/dashboard/pedido/{{i['_id']}}" class="btn btn-primary mb">ver pedido</a>
+                            <a href="/dashboard/pedido/{{i['id']}}" class="btn btn-primary mb">ver pedido</a>
                         </div>
                     </div>
                 </div>   

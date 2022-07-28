@@ -79,14 +79,35 @@ def producto(id):
 
 @dashboard.route('/pedidos')
 def show_pedidos():
+    print('pedidos ponte verga')
     if 'usuario' in session:
         
         id_vendedor = session['usuario']
+ 
+        hoy = str(obtener_fecha())
+        hoy = hoy[0:10]
 
         pedidos = []
         res =  mongo.db.compras.find({'id_vendedor':id_vendedor})
+        
         for i in res:
-            pedidos.append(i)
+            fecha = str(i['fecha'])
+            fecha = fecha[0:10]
+
+            if hoy == fecha:
+
+                temp = {
+                    
+                    'id':str(i['_id']),
+                    'nombre_cliente':i['nombre_cliente'],
+                    'foto_cliente':i['foto_cliente'],
+                    'total':i['total'],
+                    'productos':i['productos'],
+                    'fecha':fecha,
+                    'estado_compra':i['estado_compra']
+                }
+                
+                pedidos.append(temp)
         
         return render_template('/vendedores/pedidos.html',pedidos = pedidos)
     else:

@@ -1,3 +1,4 @@
+from ast import arg
 from flask import Blueprint,jsonify, request, Response,session,render_template,flash,redirect
 
 from bson import json_util
@@ -29,24 +30,23 @@ def index():
 
         #modulo de favoritos
         favoritos = []
-        arg = []
-        res = mongo.db.compras.find_one({'id_cliente':id})
-        if res: # validamos esta perra shit que exista un valor porq si no vale verga esto
-            res = res['productos']
-            
+        lista_id = []
+        res = mongo.db.compras.find({'id_cliente':id}).limit(5)
+        if res:
             for i in res:
-                if i['id_producto'] in arg:
-                    pass    # un iz filtro
+                if i['productos'][0]['id_producto'] in lista_id:
+                    pass
                 else:
-                    arg.append(i['id_producto'])
+                    lista_id.append(i['productos'][0]['id_producto'])
+                    print(i['productos'][0]['id_producto'])
                     temp = {
-                        'id':i['id_producto'],
-                        'nombre':i['nombre_producto'],
-                        'foto':i['foto_producto']
+                        'id' : i['productos'][0]['id_producto'],
+                        'nombre': i['productos'][0]['nombre_producto'],
+                        'foto' : i['productos'][0]['foto_producto']
                     }
                     favoritos.append(temp)
+
         
-        favoritos = favoritos[0:5]
         return render_template('clientes/inicio.html', favoritos = favoritos)
     else:
         return redirect('/clientes/login')
@@ -287,7 +287,7 @@ def post_comprar():
         #notificar al vendedor
         mail_vendedor = vendedor['email']
         asunto = "Nuevo pedido"
-        msj = "Tienes un nuevo pedido!! \n Revisalo en https://menuzapotlan.club/dashboard/pedidos"
+        msj = "Tienes un nuevo pedido!! \n Revisalo en https://menuzapotlan.com/dashboard/pedidos"
         mail_notificacion(mail_vendedor,asunto,msj)
 
 

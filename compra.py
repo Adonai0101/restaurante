@@ -41,7 +41,7 @@ def comprar():
     #notificar al vendedor
     mail_vendedor = paquete['email_vendedor']
     asunto = "Nuevo pedido"
-    msj = "Tienes un nuevo pedido!! \n Revisalo en https://menuzapotlan.club/dashboard/pedidos"
+    msj = "Tienes un nuevo pedido!! \n Revisalo en https://menuzapotlan.com/dashboard/pedidos"
     mail_notificacion(mail_vendedor,asunto,msj)
 
     #borrar el carrito dinamico
