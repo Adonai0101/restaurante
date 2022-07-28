@@ -9,6 +9,10 @@ btn_pagar.addEventListener('click', () => {
         'nota': nota.value
     }
 
+    //Desactivamos el btn para que no pueda ser accionado mas de una vez
+    btn_pagar.disabled = true;
+    btn_pagar.classList.add('btn-dis')
+
     console.log(datos)
     console.log('estoy aqui')
 
